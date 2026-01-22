@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,10 +8,21 @@ import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
   {
-    icon: Phone,
-    label: "Phone",
+    icon: MessageSquare,
+    label: "Direct Support", // <--- Change this string to your preferred name
     value: "660-528-5383",
-    href: "tel:6605285383",
+    actions: [
+      { 
+        name: "Call Now", 
+        href: "tel:6605285383", 
+        color: "bg-blue-600 hover:bg-blue-700" 
+      },
+      { 
+        name: "WhatsApp", 
+        href: "https://wa.me/16605285383", 
+        color: "bg-green-600 hover:bg-green-700" 
+      }
+    ]
   },
   {
     icon: Mail,
@@ -23,7 +34,7 @@ const contactInfo = [
     icon: MapPin,
     label: "Address",
     value: "14011 Levy Ln, Pflugerville, TX 78660",
-    href: "https://maps.google.com/?q=14011+Levy+Ln+Pflugerville+TX+78660",
+    href: "https://www.google.com/maps/search/?api=1&query=14011+Levy+Ln,+Pflugerville,+TX+78660",
   },
 ];
 
@@ -46,16 +57,31 @@ export const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission (replace with actual form service)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // 1. Your WhatsApp Number (Country code 1 for USA + Number)
+    const phoneNumber = "16605285383";
 
+    // 2. Format the Message for WhatsApp
+    const whatsappMessage = `*New Inquiry from Website*
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Message:* ${formData.message}`;
+
+    // 3. Encode the URI
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    // 4. Show Feedback
     toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
+      title: "Redirecting to WhatsApp...",
+      description: "Opening chat with your message details.",
     });
 
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+    // 5. Redirect and Reset
+    setTimeout(() => {
+      window.open(whatsappUrl, "_blank");
+      setIsSubmitting(false);
+      setFormData({ name: "", email: "", message: "" });
+    }, 1000);
   };
 
   return (
@@ -80,8 +106,7 @@ export const Contact = () => {
             Contact Us
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Ready to transform your business? Reach out to discuss your project
-            or learn more about our services.
+            Ready to transform your business? Fill out the form below to chat with us directly on WhatsApp.
           </p>
         </motion.div>
 
@@ -161,10 +186,10 @@ export const Contact = () => {
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 shadow-button transition-all duration-300 hover:shadow-glow"
               >
                 {isSubmitting ? (
-                  "Sending..."
+                  "Redirecting..."
                 ) : (
                   <>
-                    Send Message
+                    CheckOut to Whatsapp
                     <Send className="ml-2 w-5 h-5" />
                   </>
                 )}
@@ -190,8 +215,8 @@ export const Contact = () => {
                   <a
                     key={index}
                     href={info.href}
-                    target={info.label === "Address" ? "_blank" : undefined}
-                    rel={info.label === "Address" ? "noopener noreferrer" : undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-start gap-4 group"
                   >
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary/20">
@@ -253,7 +278,7 @@ export const Contact = () => {
         >
           <div className="bg-card border border-border rounded-2xl overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441.6!2d-97.6188!3d30.4432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644ce8c4ca0c7e1%3A0x5a6c3d9b9c7e8f0!2s14011%20Levy%20Ln%2C%20Pflugerville%2C%20TX%2078660!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3439.141777085731!2d-97.5954934!3d30.4604598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644cf640f7b9e3b%3A0x89e2760f3536034!2s14011%20Levy%20Ln%2C%20Pflugerville%2C%20TX%2078660!5e0!3m2!1sen!2sus!4v1700000000000"
               width="100%"
               height="350"
               style={{ border: 0 }}

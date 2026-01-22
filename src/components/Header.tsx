@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+// Import the logo from your assets folder
+import logo from "../assets/favicon.svg";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -38,32 +40,27 @@ export const Header = () => {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg"
-          : "bg-transparent"
+          ? "bg-background/80 backdrop-blur-md border-b border-border py-4"
+          : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#home");
-            }}
-            className="flex items-center gap-2"
+        <div className="flex items-center justify-between">
+          {/* Logo Section */}
+          <div 
+            className="flex items-center gap-3 cursor-pointer group" 
+            onClick={() => scrollToSection("#home")}
           >
-            <div className="flex items-center gap-1">
-              <span className="text-xl lg:text-2xl font-bold text-foreground">
-                World<span className="text-primary">String</span>
-              </span>
-              <span className="text-primary font-bold text-xl lg:text-2xl">
-                (W|S)
-              </span>
-            </div>
-          </a>
+            <img 
+              src={logo} 
+              alt="WorldString IT Solutions" 
+              className="h-10 w-auto transition-transform duration-300 group-hover:scale-110" 
+            />
+            <span className="text-xl font-bold text-foreground">
+              WorldString<span className="text-primary">IT</span> Solutions
+            </span>
+          </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -73,42 +70,35 @@ export const Header = () => {
                   e.preventDefault();
                   scrollToSection(link.href);
                 }}
-                className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 relative group"
               >
                 {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
-          </nav>
-
-          {/* CTA Button */}
-          <div className="hidden lg:block">
             <Button
               onClick={() => scrollToSection("#contact")}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-button transition-all duration-300 hover:shadow-glow"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-button hover:shadow-glow transition-all duration-300"
             >
               Contact Us
             </Button>
-          </div>
+          </nav>
 
-          {/* Mobile Menu Button */}
           <button
+            className="lg:hidden text-foreground p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground"
-            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
             className="lg:hidden bg-card border-b border-border"
           >
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
@@ -120,17 +110,11 @@ export const Header = () => {
                     e.preventDefault();
                     scrollToSection(link.href);
                   }}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
+                  className="text-muted-foreground hover:text-primary py-2"
                 >
                   {link.name}
                 </a>
               ))}
-              <Button
-                onClick={() => scrollToSection("#contact")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold w-full mt-2"
-              >
-                Contact Us
-              </Button>
             </nav>
           </motion.div>
         )}
