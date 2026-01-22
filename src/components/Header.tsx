@@ -57,7 +57,7 @@ export const Header = () => {
               className="h-10 w-auto transition-transform duration-300 group-hover:scale-110" 
             />
             <span className="text-xl font-bold text-foreground">
-              WorldString<span className="text-primary">IT</span> Solutions
+              WorldString<span className="text-primary">IT</span> <p className="text-sm">Solutions</p>
             </span>
           </div>
 
