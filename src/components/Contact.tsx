@@ -189,7 +189,7 @@ export const Contact = () => {
                   "Redirecting..."
                 ) : (
                   <>
-                    CheckOut to Whatsapp
+                    Submit
                     <Send className="ml-2 w-5 h-5" />
                   </>
                 )}
