@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-// Import the logo from your assets folder
 import logo from "../assets/favicon.svg";
 
-const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Services", href: "#services" },
+interface NavLink {
+  name: string;
+  href: string;
+  isRoute?: boolean;
+}
+
+const navLinks: NavLink[] = [
+  { name: "Home", href: "/" , isRoute: true },
+  { name: "Services", href: "/services", isRoute: true },
   { name: "About", href: "#about" },
   { name: "Careers", href: "#careers" },
   { name: "Contact", href: "#contact" },
@@ -16,6 +22,8 @@ const navLinks = [
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,12 +33,45 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleNavClick = (link: NavLink) => {
     setIsMobileMenuOpen(false);
+    
+    if (link.isRoute) {
+      navigate(link.href);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    // Hash navigation
+    if (location.pathname !== "/") {
+      // Navigate to home first, then scroll
+      navigate("/" + link.href);
+    } else {
+      const element = document.querySelector(link.href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  const handleLogoClick = () => {
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleContactClick = () => {
+    setIsMobileMenuOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/#contact");
+    } else {
+      const element = document.querySelector("#contact");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -49,35 +90,34 @@ export const Header = () => {
           {/* Logo Section */}
           <div 
             className="flex items-center gap-3 cursor-pointer group" 
-            onClick={() => scrollToSection("#home")}
+            onClick={handleLogoClick}
           >
             <img 
               src={logo} 
               alt="WorldString IT Solutions" 
               className="h-10 w-auto transition-transform duration-300 group-hover:scale-110" 
             />
-            <span className="text-xl font-bold text-foreground">
-              WorldString<span className="text-primary">IT</span> <p className="text-sm">Solutions</p>
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-foreground leading-tight">
+                WorldString<span className="text-primary">IT</span>
+              </span>
+              <span className="text-xs text-muted-foreground">Solutions</span>
+            </div>
           </div>
 
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 relative group"
+                onClick={() => handleNavClick(link)}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 relative group bg-transparent border-none cursor-pointer"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-              </a>
+              </button>
             ))}
             <Button
-              onClick={() => scrollToSection("#contact")}
+              onClick={handleContactClick}
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-button hover:shadow-glow transition-all duration-300"
             >
               Contact Us
@@ -103,17 +143,13 @@ export const Header = () => {
           >
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
-                  className="text-muted-foreground hover:text-primary py-2"
+                  onClick={() => handleNavClick(link)}
+                  className="text-left text-muted-foreground hover:text-primary py-2 bg-transparent border-none cursor-pointer"
                 >
                   {link.name}
-                </a>
+                </button>
               ))}
             </nav>
           </motion.div>
