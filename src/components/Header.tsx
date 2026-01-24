@@ -1,191 +1,20 @@
-// import { useState, useEffect } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import { Menu, X } from "lucide-react";
-// import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { Button } from "@/components/ui/button";
-// import logo from "../assets/favicon.svg";
-
-// interface NavLink {
-//   name: string;
-//   href: string;
-//   isRoute?: boolean;
-// }
-
-// const navLinks: NavLink[] = [
-//   { name: "Home", href: "/" , isRoute: true },
-//   { name: "Services", href: "/services", isRoute: true },
-//   { name: "About", href: "#about" },
-//   { name: "Careers", href: "#careers" },
-//   { name: "Contact", href: "#contact" },
-// ];
-
-// export const Header = () => {
-//   const [isScrolled, setIsScrolled] = useState(false);
-//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-//   const location = useLocation();
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       setIsScrolled(window.scrollY > 20);
-//     };
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   const handleNavClick = (link: NavLink) => {
-//     setIsMobileMenuOpen(false);
-    
-//     if (link.isRoute) {
-//       navigate(link.href);
-//       window.scrollTo({ top: 0, behavior: "smooth" });
-//       return;
-//     }
-
-//     // Hash navigation
-//     if (location.pathname !== "/") {
-//       // Navigate to home first, then scroll
-//       navigate("/" + link.href);
-//     } else {
-//       const element = document.querySelector(link.href);
-//       if (element) {
-//         element.scrollIntoView({ behavior: "smooth" });
-//       }
-//     }
-//   };
-
-//   const handleLogoClick = () => {
-//     if (location.pathname !== "/") {
-//       navigate("/");
-//     }
-//     window.scrollTo({ top: 0, behavior: "smooth" });
-//     setIsMobileMenuOpen(false);
-//   };
-
-//   const handleContactClick = () => {
-//     setIsMobileMenuOpen(false);
-//     if (location.pathname !== "/") {
-//       navigate("/#contact");
-//     } else {
-//       const element = document.querySelector("#contact");
-//       if (element) {
-//         element.scrollIntoView({ behavior: "smooth" });
-//       }
-//     }
-//   };
-
-//   return (
-//     <motion.header
-//       initial={{ y: -100 }}
-//       animate={{ y: 0 }}
-//       transition={{ duration: 0.5 }}
-//       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-//         isScrolled
-//           ? "bg-background/80 backdrop-blur-md border-b border-border py-4"
-//           : "bg-transparent py-6"
-//       }`}
-//     >
-//       <div className="container mx-auto px-4 lg:px-8">
-//         <div className="flex items-center justify-between">
-//           {/* Logo Section */}
-//           <div 
-//             className="flex items-center gap-3 cursor-pointer group" 
-//             onClick={handleLogoClick}
-//           >
-//             <img 
-//               src={logo} 
-//               alt="WorldString IT Solutions" 
-//               className="h-10 w-auto transition-transform duration-300 group-hover:scale-110" 
-//             />
-//             <div className="flex flex-col">
-//               <span className="text-xl font-bold text-foreground leading-tight">
-//                 WorldString<span className="text-primary">IT</span>
-//               </span>
-//               <span className="text-xs text-muted-foreground">Solutions</span>
-//             </div>
-//           </div>
-
-//           <nav className="hidden lg:flex items-center gap-8">
-//             {navLinks.map((link) => (
-//               <button
-//                 key={link.name}
-//                 onClick={() => handleNavClick(link)}
-//                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 relative group bg-transparent border-none cursor-pointer"
-//               >
-//                 {link.name}
-//                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-//               </button>
-//             ))}
-//             <Button
-//               onClick={handleContactClick}
-//               className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-button hover:shadow-glow transition-all duration-300"
-//             >
-//               Contact Us
-//             </Button>
-//           </nav>
-
-//           <button
-//             className="lg:hidden text-foreground p-2"
-//             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-//           >
-//             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-//           </button>
-//         </div>
-//       </div>
-
-//       <AnimatePresence>
-//         {isMobileMenuOpen && (
-//           <motion.div
-//             initial={{ opacity: 0, height: 0 }}
-//             animate={{ opacity: 1, height: "auto" }}
-//             exit={{ opacity: 0, height: 0 }}
-//             className="lg:hidden bg-card border-b border-border"
-//           >
-//             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-//               {navLinks.map((link) => (
-//                 <button
-//                   key={link.name}
-//                   onClick={() => handleNavClick(link)}
-//                   className="text-left text-muted-foreground hover:text-primary py-2 bg-transparent border-none cursor-pointer"
-//                 >
-//                   {link.name}
-//                 </button>
-//               ))}
-//             </nav>
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
-//     </motion.header>
-//   );
-// };
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { navigationItems, NavItem } from "@/data/navigation";
 import logo from "../assets/favicon.svg";
-
-interface NavLink {
-  name: string;
-  href: string;
-  isRoute?: boolean;
-}
-
-const navLinks: NavLink[] = [
-  { name: "Home", href: "/", isRoute: true },
-  { name: "Services", href: "/services", isRoute: true },
-  { name: "About", href: "#about" },
-  { name: "Careers", href: "#careers" },
-  { name: "Contact", href: "#contact" },
-];
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Handle background scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -194,55 +23,49 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // FIX: This Effect monitors the URL and scrolls once the page is ready
+  // Close mobile menu on route change
   useEffect(() => {
-    if (location.hash) {
-      // Small timeout ensures the DOM elements like #about are rendered
-      const timer = setTimeout(() => {
-        const element = document.querySelector(location.hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 150); 
-      return () => clearTimeout(timer);
-    }
-  }, [location]); // Triggers on every navigation/hash change
-
-  const handleNavClick = (link: NavLink) => {
     setIsMobileMenuOpen(false);
-    
-    if (link.isRoute) {
-      navigate(link.href);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
+    setMobileOpenDropdown(null);
+  }, [location.pathname]);
 
-    // Logic for hash links (#about, #contact, etc)
-    if (location.pathname !== "/") {
-      // If we are not on home, go home with the hash. 
-      // The useEffect above will handle the actual scrolling once we arrive.
-      navigate("/" + link.href);
-    } else {
-      // If already on home, scroll immediately
-      const element = document.querySelector(link.href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+  const handleNavClick = (item: NavItem) => {
+    if (item.subItems && item.subItems.length > 0) {
+      return; // Let dropdown handle it
     }
+    navigate(item.href);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleDropdownEnter = (name: string) => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setOpenDropdown(name);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 150);
   };
 
   const handleLogoClick = () => {
     setIsMobileMenuOpen(false);
-    if (location.pathname !== "/") {
-      navigate("/");
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleContactClick = () => {
-    handleNavClick({ name: "Contact", href: "#contact" });
+    setIsMobileMenuOpen(false);
+    navigate("/contact");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // Filter main nav items for display (excluding Contact Us, Employee Login)
+  const mainNavItems = navigationItems.filter(
+    item => !["Contact Us", "Employee Login"].includes(item.name)
+  );
 
   return (
     <motion.header
@@ -251,12 +74,13 @@ export const Header = () => {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border py-4"
-          : "bg-transparent py-6"
+          ? "bg-background/95 backdrop-blur-md border-b border-border py-3"
+          : "bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between">
+          {/* Logo */}
           <div 
             className="flex items-center gap-3 cursor-pointer group" 
             onClick={handleLogoClick}
@@ -267,36 +91,103 @@ export const Header = () => {
               className="h-10 w-auto transition-transform duration-300 group-hover:scale-110" 
             />
             <div className="flex flex-col">
-             <span className="text-xl font-bold text-foreground leading-tight">
-    WorldString<span className="text-primary">IT</span>
-  </span>
-  <span className="text-sm font-bold text-foreground">
-    Solutions
-  </span>
+              <span className="text-lg font-bold text-foreground leading-tight">
+                WorldString<span className="text-primary">IT</span>
+              </span>
+              <span className="text-xs font-semibold text-muted-foreground">
+                Solutions
+              </span>
             </div>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => handleNavClick(link)}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 relative group bg-transparent border-none cursor-pointer"
+          {/* Desktop Navigation */}
+          <nav className="hidden xl:flex items-center gap-1">
+            {mainNavItems.map((item) => (
+              <div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => item.subItems && handleDropdownEnter(item.name)}
+                onMouseLeave={handleDropdownLeave}
               >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-              </button>
+                <button
+                  onClick={() => handleNavClick(item)}
+                  className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-lg hover:bg-secondary/50 ${
+                    location.pathname.startsWith(item.href) && item.href !== "/"
+                      ? "text-primary"
+                      : location.pathname === "/" && item.href === "/"
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.name}
+                  {item.subItems && (
+                    <ChevronDown 
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        openDropdown === item.name ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
+                </button>
+
+                {/* Dropdown Menu */}
+                <AnimatePresence>
+                  {item.subItems && openDropdown === item.name && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 mt-1 w-64 bg-card border border-border rounded-xl shadow-lg overflow-hidden z-50"
+                    >
+                      {item.subItems.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          to={subItem.href}
+                          className="flex items-start gap-3 p-4 hover:bg-secondary/50 transition-colors group"
+                        >
+                          {subItem.icon && (
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                              <subItem.icon className="w-5 h-5 text-primary" />
+                            </div>
+                          )}
+                          <div>
+                            <div className="font-medium text-foreground group-hover:text-primary transition-colors">
+                              {subItem.name}
+                            </div>
+                            {subItem.description && (
+                              <div className="text-xs text-muted-foreground mt-0.5">
+                                {subItem.description}
+                              </div>
+                            )}
+                          </div>
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ))}
+          </nav>
+
+          {/* Right Side Buttons */}
+          <div className="hidden xl:flex items-center gap-3">
+            <Link
+              to="/employee-login"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors px-3 py-2"
+            >
+              Employee Login
+            </Link>
             <Button
               onClick={handleContactClick}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-button hover:shadow-glow transition-all duration-300"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-5 shadow-button hover:shadow-glow transition-all duration-300"
             >
               Contact Us
             </Button>
-          </nav>
+          </div>
 
+          {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-foreground p-2"
+            className="xl:hidden text-foreground p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -304,23 +195,66 @@ export const Header = () => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-card border-b border-border"
+            className="xl:hidden bg-card border-b border-border overflow-hidden"
           >
-            <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => handleNavClick(link)}
-                  className="text-left text-muted-foreground hover:text-primary py-2 bg-transparent border-none cursor-pointer"
-                >
-                  {link.name}
-                </button>
+            <nav className="container mx-auto px-4 py-4 flex flex-col gap-1 max-h-[70vh] overflow-y-auto">
+              {navigationItems.map((item) => (
+                <div key={item.name}>
+                  {item.subItems ? (
+                    <>
+                      <button
+                        onClick={() => setMobileOpenDropdown(
+                          mobileOpenDropdown === item.name ? null : item.name
+                        )}
+                        className="w-full flex items-center justify-between text-left text-muted-foreground hover:text-primary py-3 px-2 rounded-lg hover:bg-secondary/30"
+                      >
+                        {item.name}
+                        <ChevronDown 
+                          className={`w-4 h-4 transition-transform ${
+                            mobileOpenDropdown === item.name ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {mobileOpenDropdown === item.name && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="pl-4 space-y-1"
+                          >
+                            {item.subItems.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                to={subItem.href}
+                                className="flex items-center gap-3 py-2 px-2 text-sm text-muted-foreground hover:text-primary rounded-lg hover:bg-secondary/30"
+                              >
+                                {subItem.icon && (
+                                  <subItem.icon className="w-4 h-4 text-primary" />
+                                )}
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className="block text-muted-foreground hover:text-primary py-3 px-2 rounded-lg hover:bg-secondary/30"
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
               ))}
             </nav>
           </motion.div>
