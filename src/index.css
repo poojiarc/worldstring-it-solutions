@@ -133,4 +133,12 @@
     0%, 100% { opacity: 0.5; }
     50% { opacity: 1; }
   }
+  /* 🔥 GLOBAL: Remove scroll-to-top arrow everywhere */
+button[aria-label="Scroll to top"],
+button[title="Scroll to top"],
+.scroll-to-top,
+.back-to-top {
+  display: none !important;
+}
+
 }

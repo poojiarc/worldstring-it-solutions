@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Home } from "lucide-react";
+import { Menu, X, Home } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { navigationItems, NavItem } from "@/data/navigation";
@@ -119,12 +119,7 @@ export const Header = () => {
                         `}
                       >
                         {item.name}
-                        {item.subItems && (
-                          <ChevronDown 
-                            size={12} 
-                            className={`transition-transform duration-200 opacity-60 ${openDropdown === item.name ? "rotate-180" : ""}`} 
-                          />
-                        )}
+                      
                       </button>
 
                       {/* Dropdown Menu - Aligned to keep bounds */}
@@ -211,12 +206,7 @@ export const Header = () => {
                         onClick={() => item.subItems ? setMobileOpenDropdown(mobileOpenDropdown === item.name ? null : item.name) : handleNavClick(item)}
                       >
                         {item.name}
-                        {item.subItems && (
-                          <ChevronDown 
-                            size={16} 
-                            className={`text-muted-foreground transition-transform ${mobileOpenDropdown === item.name ? 'rotate-180' : ''}`} 
-                          />
-                        )}
+                    
                       </div>
                       
                       {item.subItems && mobileOpenDropdown === item.name && (
