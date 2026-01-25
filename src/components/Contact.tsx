@@ -73,8 +73,8 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 relative bg-background">
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+    <section id="contact" className="py-0 lg:py-0 relative bg-background">
+      <div className="container mx-auto px-2 lg:px-4 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -251,28 +251,6 @@ export const Contact = () => {
             </div>
           </motion.div>
         </div>
-
-        {/* Google Map */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-12"
-        >
-          <div className="bg-background border border-border rounded-2xl overflow-hidden shadow-sm">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3439.141777085731!2d-97.5954934!3d30.4604598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644cf640f7b9e3b%3A0x89e2760f3536034!2s14011%20Levy%20Ln%2C%20Pflugerville%2C%20TX%2078660!5e0!3m2!1sen!2sus!4v1700000000000"
-              width="100%"
-              height="350"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="WorldString IT Solutions Location"
-            />
-          </div>
-        </motion.div>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
+
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Home } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { navigationItems, NavItem } from "@/data/navigation";
@@ -11,286 +12,242 @@ export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
+
   const location = useLocation();
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  const handleAboutClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+    }
     setIsMobileMenuOpen(false);
-    setMobileOpenDropdown(null);
-  }, [location.pathname]);
+  };
 
   const handleNavClick = (item: NavItem) => {
-    if (item.subItems && item.subItems.length > 0) {
-      return; // Let dropdown handle it
-    }
+    if (item.subItems?.length) return;
     navigate(item.href);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleDropdownEnter = (name: string) => {
-    if (dropdownTimeoutRef.current) {
-      clearTimeout(dropdownTimeoutRef.current);
-    }
-    setOpenDropdown(name);
-  };
-
-  const handleDropdownLeave = () => {
-    dropdownTimeoutRef.current = setTimeout(() => {
-      setOpenDropdown(null);
-    }, 150);
-  };
-
-  const handleLogoClick = () => {
     setIsMobileMenuOpen(false);
-    navigate("/");
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  // Filter main nav items for display (excluding Contact Us, Employee Login)
-  const mainNavItems = navigationItems.filter(
-    item => !["Contact Us", "Employee Login"].includes(item.name)
-  );
 
   return (
     <>
-      {/* Top Bar */}
-      <div className="bg-secondary border-b border-border">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-10">
-            {/* Left side - About & Contact */}
-            <div className="flex items-center gap-6">
-              <Link 
-                to="/about" 
-                className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
-              >
-                About Us
-              </Link>
-              <Link 
-                to="/contact" 
-                className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
-              >
+      {/* TOP BAR - Hidden on mobile, visible on medium+ screens */}
+      <div className="bg-secondary/40 border-b border-border hidden md:block">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="flex justify-between items-center h-9 text-[10px] lg:text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+            <div className="flex gap-6">
+              <button onClick={handleAboutClick} className="hover:text-primary transition-colors ">
+                ABOUT US
+              </button>
+              <Link to="/contact" className="hover:text-primary transition-colors">
                 Contact Us
               </Link>
             </div>
-            {/* Right side - optional blogs */}
-            <div className="hidden md:flex items-center gap-6">
-              <span className="text-sm text-muted-foreground">
-                Enterprise IT Solutions
-              </span>
-            </div>
+            <div>Enterprise IT Solutions</div>
           </div>
         </div>
       </div>
 
-      {/* Main Header */}
+      {/* MAIN HEADER */}
       <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-background/98 backdrop-blur-md border-b border-border shadow-sm py-2"
-            : "bg-background border-b border-border py-3"
-        }`}
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+          isScrolled ? "bg-white/95 backdrop-blur shadow-sm py-2" : "bg-white py-3"
+        } border-b`}
       >
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="flex items-center justify-between gap-2 lg:gap-4">
+            
+            {/* LOGO AREA - Fixed width to prevent crushing */}
             <div 
-              className="flex items-center gap-3 cursor-pointer group" 
-              onClick={handleLogoClick}
+              onClick={() => navigate("/")} 
+              className="flex items-center gap-3 cursor-pointer shrink-0"
             >
-              <img 
-                src={logo} 
-                alt="WorldString IT Solutions" 
-                className="h-10 w-auto transition-transform duration-300 group-hover:scale-110" 
-              />
-              <div className="flex flex-col">
-                <span className="text-lg font-bold text-foreground leading-tight">
+              {/* Logo Image */}
+              <img src={logo} alt="WorldStringIT Solutions" className="h-14 w-auto object-contain" />
+              
+              {/* Hidden text block to avoid duplication if logo has text */}
+              <div className="hidden border-l pl-4 border-gray-200">
+                <div className="font-bold text-lg leading-tight">
                   WorldString<span className="text-primary">IT</span>
-                </span>
-                <span className="text-xs font-semibold text-muted-foreground">
-                  Solutions
-                </span>
+                </div>
               </div>
             </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden xl:flex items-center gap-1">
-              {mainNavItems.map((item) => (
-                <div
-                  key={item.name}
-                  className="relative"
-                  onMouseEnter={() => item.subItems && handleDropdownEnter(item.name)}
-                  onMouseLeave={handleDropdownLeave}
-                >
-                  <button
-                    onClick={() => handleNavClick(item)}
-                    className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg hover:bg-secondary ${
-                      location.pathname.startsWith(item.href) && item.href !== "/"
-                        ? "text-primary"
-                        : location.pathname === "/" && item.href === "/"
-                        ? "text-primary"
-                        : "text-foreground hover:text-primary"
-                    }`}
-                  >
-                    {item.name}
-                    {item.subItems && (
-                      <ChevronDown 
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          openDropdown === item.name ? "rotate-180" : ""
-                        }`}
-                      />
-                    )}
-                  </button>
-
-                  {/* Dropdown Menu */}
-                  <AnimatePresence>
-                    {item.subItems && openDropdown === item.name && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-1 w-64 bg-background border border-border rounded-xl shadow-lg overflow-hidden z-50"
+            {/* DESKTOP NAV - Compact Layout */}
+            <nav className="hidden xl:flex items-center justify-end flex-1 min-w-0">
+              {/* Home Icon */}
+              <button 
+                onClick={() => navigate("/")} 
+                className="text-muted-foreground hover:text-primary p-2 mr-1 transition-colors shrink-0"
+                title="Home"
+              >
+                <Home size={18} />
+              </button>
+              
+              {/* Navigation Items Container */}
+              <div className="flex items-center h-9 bg-gray-50/50 rounded-lg px-1 border border-transparent hover:border-gray-100 transition-colors shrink min-w-0 overflow-visible">
+                {navigationItems
+                  .filter(item => !["Contact Us", "Employee Login", "About Us"].includes(item.name))
+                  .map((item) => (
+                    <div
+                      key={item.name}
+                      className="relative h-full flex items-center group"
+                      onMouseEnter={() => item.subItems && setOpenDropdown(item.name)}
+                      onMouseLeave={() => setOpenDropdown(null)}
+                    >
+                      <button
+                        onClick={() => handleNavClick(item)}
+                        className={`
+                          px-2 lg:px-3 py-1.5 text-[10px] lg:text-[11px] font-bold uppercase tracking-tight 
+                          transition-colors flex items-center gap-0.5 whitespace-nowrap
+                          ${location.pathname.startsWith(item.href) ? "text-primary" : "text-slate-600 hover:text-primary"}
+                        `}
                       >
-                        {item.subItems.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            to={subItem.href}
-                            className="flex items-start gap-3 p-4 hover:bg-secondary transition-colors group"
+                        {item.name}
+                        {item.subItems && (
+                          <ChevronDown 
+                            size={12} 
+                            className={`transition-transform duration-200 opacity-60 ${openDropdown === item.name ? "rotate-180" : ""}`} 
+                          />
+                        )}
+                      </button>
+
+                      {/* Dropdown Menu - Aligned to keep bounds */}
+                      <AnimatePresence>
+                        {item.subItems && openDropdown === item.name && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 8 }}
+                            transition={{ duration: 0.15 }}
+                            className="absolute top-full left-0 w-56 bg-white border border-gray-100 rounded-lg shadow-xl py-2 mt-1 z-50"
                           >
-                            {subItem.icon && (
-                              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                                <subItem.icon className="w-5 h-5 text-primary" />
-                              </div>
-                            )}
-                            <div>
-                              <div className="font-medium text-foreground group-hover:text-primary transition-colors">
-                                {subItem.name}
-                              </div>
-                              {subItem.description && (
-                                <div className="text-xs text-muted-foreground mt-0.5">
-                                  {subItem.description}
-                                </div>
-                              )}
-                            </div>
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
+                            {item.subItems.map((sub) => (
+                              <Link 
+                                key={sub.name} 
+                                to={sub.href} 
+                                className="block px-4 py-2.5 hover:bg-slate-50 border-l-2 border-transparent hover:border-primary transition-all group/link"
+                              >
+                                <span className="font-bold text-xs text-slate-700 group-hover/link:text-primary block mb-0.5">
+                                  {sub.name}
+                                </span>
+                                {sub.description && (
+                                  <span className="text-[10px] text-muted-foreground leading-tight block">
+                                    {sub.description}
+                                  </span>
+                                )}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      
+                      {/* Divider */}
+                      <div className="h-3 w-[1px] bg-gray-200 mx-0.5 last:hidden group-last:hidden" />
+                    </div>
+                  ))}
+              </div>
+
+              {/* Login Button - Separated and Fixed Right */}
+              <div className="ml-2 pl-2 lg:ml-4 lg:pl-4 border-l border-gray-200 shrink-0">
+                <Button
+                  onClick={() => navigate("/employee-login")}
+                  variant="outline"
+                  className="rounded-full border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white px-4 lg:px-5 h-8 lg:h-9 font-bold uppercase text-[10px] tracking-wider shadow-sm whitespace-nowrap"
+                >
+                  Employee Login
+                </Button>
+              </div>
             </nav>
 
-            {/* Right Side Buttons */}
-            <div className="hidden xl:flex items-center gap-3">
-              <Button
-                variant="outline"
-                onClick={() => navigate("/employee-login")}
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold px-5 transition-all duration-300"
+            {/* MOBILE MENU TOGGLE */}
+            <div className="xl:hidden flex items-center">
+              <button 
+                className="p-2 text-slate-600 hover:text-primary transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                Employee Login
-              </Button>
+                {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+              </button>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="xl:hidden text-foreground p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU OVERLAY */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="xl:hidden bg-background border-b border-border overflow-hidden"
+              className="xl:hidden bg-white border-t border-gray-100 overflow-hidden absolute w-full shadow-2xl left-0"
             >
-              <nav className="container mx-auto px-4 py-4 flex flex-col gap-1 max-h-[70vh] overflow-y-auto">
+              <div className="container mx-auto px-4 py-4 flex flex-col max-h-[80vh] overflow-y-auto">
+                <button 
+                  onClick={handleAboutClick} 
+                  className="text-left px-4 py-3 font-bold text-sm text-slate-700 hover:bg-slate-50 rounded-lg transition-colors border-b border-gray-50"
+                >
+                  About Us
+                </button>
+                
                 {navigationItems.map((item) => (
-                  <div key={item.name}>
-                    {item.subItems ? (
-                      <>
-                        <button
-                          onClick={() => setMobileOpenDropdown(
-                            mobileOpenDropdown === item.name ? null : item.name
-                          )}
-                          className="w-full flex items-center justify-between text-left text-foreground hover:text-primary py-3 px-2 rounded-lg hover:bg-secondary"
-                        >
-                          {item.name}
-                          <ChevronDown 
-                            className={`w-4 h-4 transition-transform ${
-                              mobileOpenDropdown === item.name ? "rotate-180" : ""
-                            }`}
-                          />
-                        </button>
-                        <AnimatePresence>
-                          {mobileOpenDropdown === item.name && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="pl-4 space-y-1"
-                            >
-                              {item.subItems.map((subItem) => (
-                                <Link
-                                  key={subItem.name}
-                                  to={subItem.href}
-                                  className="flex items-center gap-3 py-2 px-2 text-sm text-muted-foreground hover:text-primary rounded-lg hover:bg-secondary"
-                                >
-                                  {subItem.icon && (
-                                    <subItem.icon className="w-4 h-4 text-primary" />
-                                  )}
-                                  {subItem.name}
-                                </Link>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      <Link
-                        to={item.href}
-                        className="block text-foreground hover:text-primary py-3 px-2 rounded-lg hover:bg-secondary"
+                   <div key={item.name} className="border-b border-gray-50 last:border-0">
+                      <div 
+                        className="flex justify-between items-center px-4 py-3 font-bold text-sm text-slate-700 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors"
+                        onClick={() => item.subItems ? setMobileOpenDropdown(mobileOpenDropdown === item.name ? null : item.name) : handleNavClick(item)}
                       >
                         {item.name}
-                      </Link>
-                    )}
-                  </div>
+                        {item.subItems && (
+                          <ChevronDown 
+                            size={16} 
+                            className={`text-muted-foreground transition-transform ${mobileOpenDropdown === item.name ? 'rotate-180' : ''}`} 
+                          />
+                        )}
+                      </div>
+                      
+                      {item.subItems && mobileOpenDropdown === item.name && (
+                        <div className="bg-slate-50/50 pl-4 py-2">
+                          {item.subItems.map(sub => (
+                            <Link 
+                              key={sub.name} 
+                              to={sub.href} 
+                              onClick={() => setIsMobileMenuOpen(false)} 
+                              className="block py-2.5 px-4 text-xs font-semibold text-slate-500 hover:text-primary rounded-md hover:bg-white transition-all"
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                   </div>
                 ))}
                 
-                {/* Mobile Employee Login Button */}
-                <div className="pt-4 border-t border-border mt-2">
+                <div className="mt-6 px-4 pb-2">
                   <Button
-                    variant="outline"
                     onClick={() => {
-                      navigate("/employee-login");
-                      setIsMobileMenuOpen(false);
+                        navigate("/employee-login");
+                        setIsMobileMenuOpen(false);
                     }}
-                    className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold"
+                    className="w-full rounded-lg bg-primary text-white font-bold uppercase text-xs tracking-wider h-11 shadow-md"
                   >
                     Employee Login
                   </Button>
                 </div>
-              </nav>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
