@@ -26,10 +26,7 @@ const itemVariants = {
 
 export const Services = () => {
   return (
-    <section id="services" className="py-24 lg:py-32 relative">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
-
+    <section id="services" className="py-24 lg:py-32 relative bg-background">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -63,11 +60,11 @@ export const Services = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group relative bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-glow-sm flex flex-col"
+              className="group relative bg-background border border-border rounded-2xl p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 flex flex-col"
             >
               {/* Icon */}
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
-                <service.icon className="w-7 h-7 text-primary" />
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
+                <service.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
               </div>
 
               {/* Content */}
@@ -86,9 +83,6 @@ export const Services = () => {
                 Read More
                 <ArrowRight className="w-4 h-4" />
               </Link>
-
-              {/* Hover Gradient */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </motion.div>
           ))}
         </motion.div>

@@ -9,20 +9,9 @@ import { useToast } from "@/hooks/use-toast";
 const contactInfo = [
   {
     icon: MessageSquare,
-    label: "Direct Support", // <--- Change this string to your preferred name
+    label: "Direct Support",
     value: "660-528-5383",
-    actions: [
-      { 
-        name: "Call Now", 
-        href: "tel:6605285383", 
-        color: "bg-blue-600 hover:bg-blue-700" 
-      },
-      { 
-        name: "WhatsApp", 
-        href: "https://wa.me/16605285383", 
-        color: "bg-green-600 hover:bg-green-700" 
-      }
-    ]
+    href: "tel:6605285383",
   },
   {
     icon: Mail,
@@ -57,39 +46,34 @@ export const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 1. Your WhatsApp Number (Country code 1 for USA + Number)
-    const phoneNumber = "16605285383";
+    // Construct mailto link
+    const subject = encodeURIComponent(`Website Inquiry from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    const mailtoUrl = `mailto:worldstringitsolutions@gmail.com?subject=${subject}&body=${body}`;
 
-    // 2. Format the Message for WhatsApp
-    const whatsappMessage = `*New Inquiry from Website*
-*Name:* ${formData.name}
-*Email:* ${formData.email}
-*Message:* ${formData.message}`;
-
-    // 3. Encode the URI
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-    // 4. Show Feedback
+    // Show success feedback
     toast({
-      title: "Redirecting to WhatsApp...",
-      description: "Opening chat with your message details.",
+      title: "Opening email client...",
+      description: "Your message details have been prepared.",
     });
 
-    // 5. Redirect and Reset
+    // Open mailto and reset
     setTimeout(() => {
-      window.open(whatsappUrl, "_blank");
+      window.location.href = mailtoUrl;
       setIsSubmitting(false);
       setFormData({ name: "", email: "", message: "" });
-    }, 1000);
+      
+      toast({
+        title: "Message prepared!",
+        description: "Please send the email from your email client.",
+      });
+    }, 500);
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 relative">
-      {/* Background */}
-      <div className="absolute inset-0 bg-background" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(203_89%_53%_/_0.05)_0%,_transparent_60%)]" />
-
+    <section id="contact" className="py-24 lg:py-32 relative bg-background">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -106,7 +90,7 @@ export const Contact = () => {
             Contact Us
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Ready to transform your business? Fill out the form below to chat with us directly on WhatsApp.
+            Ready to transform your business? Fill out the form below and we'll get back to you shortly.
           </p>
         </motion.div>
 
@@ -117,7 +101,7 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-card border border-border rounded-2xl p-8"
+            className="bg-background border border-border rounded-2xl p-8 shadow-sm"
           >
             <h3 className="text-2xl font-semibold text-foreground mb-6">
               Send Us a Message
@@ -139,7 +123,7 @@ export const Contact = () => {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   required
-                  className="bg-background border-border focus:border-primary"
+                  className="bg-background border-border focus:border-primary focus:ring-primary"
                 />
               </div>
               <div>
@@ -158,7 +142,7 @@ export const Contact = () => {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   required
-                  className="bg-background border-border focus:border-primary"
+                  className="bg-background border-border focus:border-primary focus:ring-primary"
                 />
               </div>
               <div>
@@ -177,19 +161,19 @@ export const Contact = () => {
                   }
                   required
                   rows={5}
-                  className="bg-background border-border focus:border-primary resize-none"
+                  className="bg-background border-border focus:border-primary focus:ring-primary resize-none"
                 />
               </div>
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 shadow-button transition-all duration-300 hover:shadow-glow"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 shadow-button transition-all duration-300"
               >
                 {isSubmitting ? (
-                  "Redirecting..."
+                  "Preparing..."
                 ) : (
                   <>
-                    Submit
+                    Send Message
                     <Send className="ml-2 w-5 h-5" />
                   </>
                 )}
@@ -206,7 +190,7 @@ export const Contact = () => {
             className="space-y-6"
           >
             {/* Contact Details Card */}
-            <div className="bg-card border border-border rounded-2xl p-8">
+            <div className="bg-background border border-border rounded-2xl p-8 shadow-sm">
               <h3 className="text-2xl font-semibold text-foreground mb-6">
                 Contact Information
               </h3>
@@ -219,8 +203,8 @@ export const Contact = () => {
                     rel="noopener noreferrer"
                     className="flex items-start gap-4 group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary/20">
-                      <info.icon className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:scale-105">
+                      <info.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground mb-1">
@@ -236,7 +220,7 @@ export const Contact = () => {
             </div>
 
             {/* Business Hours Card */}
-            <div className="bg-card border border-border rounded-2xl p-8">
+            <div className="bg-background border border-border rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                   <Clock className="w-5 h-5 text-primary" />
@@ -276,7 +260,7 @@ export const Contact = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-12"
         >
-          <div className="bg-card border border-border rounded-2xl overflow-hidden">
+          <div className="bg-background border border-border rounded-2xl overflow-hidden shadow-sm">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3439.141777085731!2d-97.5954934!3d30.4604598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644cf640f7b9e3b%3A0x89e2760f3536034!2s14011%20Levy%20Ln%2C%20Pflugerville%2C%20TX%2078660!5e0!3m2!1sen!2sus!4v1700000000000"
               width="100%"
@@ -286,7 +270,6 @@ export const Contact = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="WorldString IT Solutions Location"
-              className="grayscale hover:grayscale-0 transition-all duration-500"
             />
           </div>
         </motion.div>

@@ -35,7 +35,7 @@ const ITServicesPage = () => {
         icon={Code}
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-28 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {itServicesCards.map((service, index) => (
@@ -45,10 +45,10 @@ const ITServicesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-card border border-border rounded-2xl p-8 hover:border-primary/30 transition-all duration-300 group"
+                className="bg-background border border-border rounded-2xl p-8 hover:border-primary/40 hover:shadow-lg transition-all duration-300 group"
               >
-                <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="w-8 h-8 text-primary" />
+                <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-105 transition-all">
+                  <service.icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors" />
                 </div>
                 <h3 className="text-2xl font-semibold text-foreground mb-4">
                   {service.title}

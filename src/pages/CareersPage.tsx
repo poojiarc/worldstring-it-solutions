@@ -20,7 +20,7 @@ const culturePoints = [
 const CareersPage = () => (
   <PageLayout>
     <PageHero title="Careers at WorldString" subtitle="Join Our Team" description="Build your career with an innovative IT solutions company. We're always looking for talented individuals." icon={Briefcase} />
-    <section className="py-20">
+    <section className="py-20 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {culturePoints.map((point, index) => (
@@ -35,7 +35,7 @@ const CareersPage = () => (
           <h2 className="text-2xl font-bold text-foreground text-center mb-8">Open Positions</h2>
           <div className="space-y-4 max-w-3xl mx-auto mb-12">
             {openPositions.map((pos, index) => (
-              <div key={index} className="bg-card border border-border rounded-xl p-4 flex items-center justify-between">
+              <div key={index} className="bg-background border border-border rounded-xl p-4 flex items-center justify-between hover:border-primary/40 transition-colors">
                 <div><h3 className="font-semibold text-foreground">{pos.title}</h3><p className="text-sm text-muted-foreground">{pos.location} • {pos.type}</p></div>
                 <Button variant="outline" size="sm" onClick={() => window.location.href = 'mailto:worldstringitsolutions@gmail.com?subject=Application: ' + pos.title}>Apply</Button>
               </div>

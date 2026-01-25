@@ -46,22 +46,22 @@ export const HeroSlider = () => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(203_89%_53%_/_0.1)_0%,_transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(199_89%_60%_/_0.08)_0%,_transparent_50%)]" />
+      {/* Background - Light theme */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/30 to-background" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(210_100%_45%_/_0.08)_0%,_transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(210_100%_52%_/_0.06)_0%,_transparent_50%)]" />
       
       {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
+      <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
         backgroundSize: '50px 50px'
       }} />
 
-      {/* Animated Orbs */}
+      {/* Animated Orbs - Subtle blue */}
       <motion.div
         animate={{ 
           scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
+          opacity: [0.1, 0.2, 0.1],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 -right-32 w-96 h-96 rounded-full bg-primary/10 blur-3xl"
@@ -69,7 +69,7 @@ export const HeroSlider = () => {
       <motion.div
         animate={{ 
           scale: [1.2, 1, 1.2],
-          opacity: [0.2, 0.4, 0.2],
+          opacity: [0.08, 0.15, 0.08],
         }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full bg-accent/10 blur-3xl"
@@ -141,7 +141,7 @@ export const HeroSlider = () => {
               <Button
                 size="lg"
                 onClick={() => handleCTAClick(heroSlides[currentSlide].cta.href)}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg shadow-button hover:shadow-glow transition-all duration-300"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg shadow-button transition-all duration-300"
               >
                 {heroSlides[currentSlide].cta.text}
               </Button>
@@ -149,7 +149,7 @@ export const HeroSlider = () => {
                 size="lg"
                 variant="outline"
                 onClick={() => handleCTAClick("/contact")}
-                className="border-border hover:bg-secondary text-foreground font-semibold px-8 py-6 text-lg"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold px-8 py-6 text-lg"
               >
                 Get in Touch
               </Button>
@@ -160,14 +160,14 @@ export const HeroSlider = () => {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-card/80 border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300 backdrop-blur-sm"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 shadow-sm"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-card/80 border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300 backdrop-blur-sm"
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 shadow-sm"
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
@@ -182,7 +182,7 @@ export const HeroSlider = () => {
               className={`transition-all duration-300 ${
                 currentSlide === index
                   ? "w-8 h-3 bg-primary rounded-full"
-                  : "w-3 h-3 bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50"
+                  : "w-3 h-3 bg-muted-foreground/30 rounded-full hover:bg-primary/50"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />

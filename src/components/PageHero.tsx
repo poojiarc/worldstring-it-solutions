@@ -11,10 +11,9 @@ interface PageHeroProps {
 
 export const PageHero = ({ title, subtitle, description, icon: Icon, badge }: PageHeroProps) => {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden">
+    <section className="relative py-24 lg:py-32 overflow-hidden bg-secondary/30">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(203_89%_53%_/_0.08)_0%,_transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(210_100%_45%_/_0.06)_0%,_transparent_50%)]" />
       
       {/* Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.02]" style={{
