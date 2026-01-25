@@ -78,12 +78,15 @@ export const Header = () => {
               className="flex items-center gap-3 cursor-pointer shrink-0"
             >
               {/* Logo Image */}
-              <img src={logo} alt="WorldStringIT Solutions" className="h-14 w-auto object-contain" />
+              <img src={logo} alt="WorldStringIT Solutions" className="h-10 w-auto object-contain" />
               
               {/* Hidden text block to avoid duplication if logo has text */}
-              <div className="hidden border-l pl-4 border-gray-200">
+              <div className="border-l pl-4 border-gray-200">
                 <div className="font-bold text-lg leading-tight">
+                  <span className="text-lg font-bold text-foreground">
                   WorldString<span className="text-primary">IT</span>
+                </span>
+                <span className="text-xs text-foreground">Solutions</span>
                 </div>
               </div>
             </div>
