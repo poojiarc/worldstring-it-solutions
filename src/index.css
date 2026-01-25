@@ -140,4 +140,14 @@ button[title="Scroll to top"],
 .back-to-top {
   display: none !important;
 }
+html, body {
+  overflow-x: hidden;
+}
+/* 🔥 Hide manual slider arrows on MOBILE only */
+@media (max-width: 768px) {
+  button[aria-label="Previous slide"],
+  button[aria-label="Next slide"] {
+    display: none !important;
+  }
+}
 }
