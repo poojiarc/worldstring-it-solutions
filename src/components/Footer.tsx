@@ -10,7 +10,6 @@ import logo from "../assets/favicon.svg";
 
 const quickLinks = [
   { name: "Home", href: "/", icon: Home },
-  { name: "Services", href: "/services", icon: Server },
   { name: "About", href: "/about", icon: Users },
   { name: "Careers", href: "/careers", icon: Briefcase },
   { name: "Contact", href: "/contact", icon: FileText },
@@ -25,8 +24,6 @@ const serviceLinks = [
 
 const socialLinks = [
   { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Facebook, href: "#", label: "Facebook" },
   { icon: Instagram, href: "#", label: "Instagram" },
 ];
 
@@ -50,10 +47,13 @@ export const Footer = () => {
                 <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-foreground">
-                  WorldString<span className="text-gradient">IT</span>
-                </span>
-                <span className="text-xs text-muted-foreground">Solutions</span>
+                <span
+  className="brand-text"
+  data-text="WorldString IT Solutions"
+>
+  WorldString IT Solutions
+</span>
+              
               </div>
             </Link>
             
