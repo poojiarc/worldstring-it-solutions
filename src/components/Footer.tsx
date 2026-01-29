@@ -2,8 +2,7 @@ import { motion } from "framer-motion";
 import { 
   Phone, Mail, MapPin, Clock, 
   Home, Briefcase, Server, Users, FileText,
-  Instagram, Linkedin, Twitter, Facebook,
-  ArrowRight, Sparkles
+  Linkedin, Instagram, ArrowRight, Sparkles, Globe
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "../assets/favicon.svg";
@@ -29,70 +28,61 @@ const socialLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-b from-secondary/30 to-secondary/60 border-t border-border/50 overflow-hidden">
-      {/* Decorative gradient */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      
-      {/* Background mesh */}
-      <div className="absolute inset-0 mesh-bg opacity-20 pointer-events-none" />
+    <footer className="relative bg-[#0a0c10] text-slate-300 pt-20 pb-10 overflow-hidden font-['Plus_Jakarta_Sans']">
+      {/* Visual Accents */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-[30%] h-[30%] bg-indigo-600/5 blur-[100px] rounded-full" />
 
-      <div className="container mx-auto px-4 lg:px-8 py-16 lg:py-20 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
           
-          {/* Brand Column */}
-          <div className="space-y-6">
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className="relative">
-                <img src={logo} alt="WorldString Logo" className="h-12 w-auto group-hover:scale-105 transition-transform" />
-                <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-              <div className="flex flex-col">
-                <span
-  className="brand-text"
-  data-text="WorldString IT Solutions"
->
-  WorldString IT Solutions
-</span>
-              
+          {/* Brand Column - Wider Span */}
+          <div className="lg:col-span-4 space-y-8">
+            <Link to="/" className="inline-block group">
+              <div className="flex items-center gap-4">
+                <div className="p-2 bg-white/5 rounded-2xl border border-white/10 group-hover:border-blue-500/50 transition-colors shadow-2xl">
+                  <img src={logo} alt="Logo" className="h-10 w-auto" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xl font-extrabold tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                    WorldString <span className="text-blue-500">IT</span>
+                  </span>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-500">Solutions</span>
+                </div>
               </div>
             </Link>
             
-            <p className="text-muted-foreground leading-relaxed">
-              Empowering businesses with cutting-edge technology solutions and strategic IT consulting for the modern enterprise.
+            <p className="text-slate-400 text-lg leading-relaxed max-w-sm">
+              Architecting the digital future with bespoke <span className="text-white font-medium">enterprise solutions</span> and world-class IT talent.
             </p>
             
-            {/* Social Icons */}
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <motion.a 
                   key={social.label}
                   href={social.href}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-xl bg-white border border-border/50 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg transition-all duration-300 group"
-                  aria-label={social.label}
+                  whileHover={{ y: -5, scale: 1.1 }}
+                  className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-blue-600 hover:border-blue-500 transition-all shadow-xl"
                 >
-                  <social.icon size={18} className="group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                  <social.icon size={20} />
                 </motion.a>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-foreground font-bold text-lg mb-6 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-primary" />
-              Quick Links
+          <div className="lg:col-span-2">
+            <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+              Company
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.href} 
-                    className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-all duration-300 group"
-                  >
-                    <link.icon className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
-                    <span className="link-underline">{link.name}</span>
+                  <Link to={link.href} className="text-slate-400 hover:text-white flex items-center gap-2 group transition-colors">
+                    <ArrowRight className="w-3 h-3 text-blue-500 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -100,23 +90,19 @@ export const Footer = () => {
           </div>
 
           {/* Services */}
-          <div>
-            <h4 className="text-foreground font-bold text-lg mb-6 flex items-center gap-2">
-              <Server className="w-4 h-4 text-primary" />
-              Services
+          <div className="lg:col-span-3">
+            <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+              Expertise
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-6">
               {serviceLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.href} 
-                    className="group block"
-                  >
-                    <span className="flex items-center gap-2 text-muted-foreground group-hover:text-primary transition-colors font-medium">
-                      <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
+                  <Link to={link.href} className="group block">
+                    <span className="text-slate-200 group-hover:text-blue-400 transition-colors block font-semibold mb-1">
                       {link.name}
                     </span>
-                    <span className="text-xs text-muted-foreground/70 ml-0 group-hover:ml-5 transition-all">
+                    <span className="text-xs text-slate-500 group-hover:text-slate-400 transition-colors">
                       {link.desc}
                     </span>
                   </Link>
@@ -125,75 +111,50 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-foreground font-bold text-lg mb-6 flex items-center gap-2">
-              <Phone className="w-4 h-4 text-primary" />
-              Contact Info
-            </h4>
-            <ul className="space-y-4 text-muted-foreground">
-              <li>
-                <a href="https://maps.google.com" className="flex gap-3 group hover:text-primary transition-colors">
-                  <MapPin className="text-primary shrink-0 w-5 h-5 group-hover:scale-110 transition-transform" /> 
-                  <span>14011 Levy Ln, Pflugerville, TX 78660</span>
+          {/* Contact - The "Value" Column */}
+          <div className="lg:col-span-3">
+            <div className="p-6 rounded-[2rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10 shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Globe className="w-20 h-20 text-blue-500" />
+              </div>
+              
+              <h4 className="text-white font-bold mb-6 flex items-center gap-2">
+                Connect Now
+              </h4>
+              <div className="space-y-4 text-sm">
+                <a href="tel:6605285383" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400">
+                    <Phone size={14} />
+                  </div>
+                  +1 (660) 528-5383
                 </a>
-              </li>
-              <li>
-                <a href="tel:6605285383" className="flex gap-3 group hover:text-primary transition-colors">
-                  <Phone className="text-primary shrink-0 w-5 h-5 group-hover:scale-110 transition-transform" /> 
-                  <span>660-528-5383</span>
+                <a href="mailto:worldstringitsolutions@gmail.com" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors break-all">
+                  <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+                    <Mail size={14} />
+                  </div>
+                  Email Support
                 </a>
-              </li>
-              <li>
-                <a href="mailto:worldstringitsolutions@gmail.com" className="flex gap-3 group hover:text-primary transition-colors">
-                  <Mail className="text-primary shrink-0 w-5 h-5 group-hover:scale-110 transition-transform" /> 
-                  <span className="break-all">worldstringitsolutions@gmail.com</span>
-                </a>
-              </li>
-            </ul>
-            
-            {/* Business Hours Card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mt-6 p-4 rounded-2xl bg-white/50 border border-border/50 shadow-sm"
-            >
-              <h5 className="text-foreground font-semibold mb-3 flex items-center gap-2 text-sm">
-                <Clock className="w-4 h-4 text-primary" />
-                Business Hours
-              </h5>
-              <ul className="space-y-1.5 text-xs text-muted-foreground">
-                <li className="flex justify-between">
-                  <span>Mon – Fri</span>
-                  <span className="text-primary font-medium">9:00 AM – 5:00 PM</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Saturday</span>
-                  <span className="text-primary font-medium">9:00 AM – 5:00 PM</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Sunday</span>
-                  <span className="text-destructive font-medium">Closed</span>
-                </li>
-              </ul>
-            </motion.div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-white/5">
+                 <p className="text-[10px] text-slate-500 uppercase tracking-tighter mb-2">Operation Hours</p>
+                 <div className="flex justify-between items-center">
+                    <span className="text-xs font-medium text-slate-300">Mon — Sat</span>
+                    <span className="text-xs font-bold text-blue-400">9AM — 5PM</span>
+                 </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Divider & Copyright */}
-        <div className="border-t border-border/50 pt-8 relative">
-          {/* Gradient separator */}
-          <div className="absolute -top-px left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-          
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-muted-foreground text-sm text-center md:text-left">
-              © {new Date().getFullYear()} WorldString IT Solutions. All rights reserved.
-            </p>
-            <p className="text-muted-foreground text-xs flex items-center gap-2">
-              <Sparkles className="w-3 h-3 text-primary" />
-              Enterprise IT Solutions for a Connected World
-            </p>
+        {/* Bottom Bar */}
+        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-slate-500 text-xs">
+            © {new Date().getFullYear()} WorldString IT Solutions. Proudly serving Global Enterprises.
+          </p>
+          <div className="flex items-center gap-6 text-xs text-slate-500">
+            <Link to="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="#" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
