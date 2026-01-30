@@ -416,24 +416,31 @@ export const Header = () => {
                       </button>
 
                       <AnimatePresence>
-                        {item.subItems && openDropdown === item.name && (
+                        {(item.subItems|| item.emptyMessage) && openDropdown === item.name && (
                           <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            className="absolute top-[calc(100%+8px)] left-0 w-64 bg-white rounded-2xl shadow-2xl border border-slate-100 py-2 z-[110]"
-                          >
-                            {item.subItems.map(sub => (
-                              <Link
-                                key={sub.name}
-                                to={sub.href}
-                                className="flex items-center gap-3 px-4 py-3 text-sm text-slate-600 hover:bg-primary/5 hover:text-primary transition-colors"
-                              >
-                                {sub.icon && <sub.icon className="w-4 h-4 text-primary" />}
-                                {sub.name}
-                              </Link>
-                            ))}
-                          </motion.div>
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  exit={{ opacity: 0, y: 10 }}
+  className="absolute top-[calc(100%+8px)] left-0 w-64 bg-white rounded-2xl shadow-2xl border border-slate-100 py-2 z-[110]"
+>
+  {item.subItems ? (
+    item.subItems.map(sub => (
+      <Link
+        key={sub.name}
+        to={sub.href!}
+        className="flex items-center gap-3 px-4 py-3 text-sm text-slate-600 hover:bg-primary/5 hover:text-primary transition-colors"
+      >
+        {sub.icon && <sub.icon className="w-4 h-4 text-primary" />}
+        {sub.name}
+      </Link>
+    ))
+  ) : (
+    <div className="px-4 py-4 text-sm text-slate-400 text-center font-medium">
+      {item.emptyMessage}
+    </div>
+  )}
+</motion.div>
+
                         )}
                       </AnimatePresence>
                     </div>

@@ -167,6 +167,161 @@
 //     cta: { text: "Start Now", href: "/contact" },
 //   },
 // ];
+// import {
+//   Users,
+//   GraduationCap,
+//   Building,
+//   FileText,
+//   Plane,
+//   Award,
+//   FolderOpen,
+//   Code,
+// } from "lucide-react";
+
+// export interface NavSubItem {
+//   name: string;
+//   href: string;
+//   description?: string;
+//   icon?: any;
+// }
+
+// export interface NavItem {
+//   name: string;
+//   href: string;
+//   subItems?: NavSubItem[];
+// }
+
+// export const navigationItems: NavItem[] = [
+//   {
+//     name: "IT SERVICES",
+//     href: "/it-services",
+//     subItems: [
+//       {
+//         name: "IT Staffing",
+//         href: "/it-services/it-staffing",
+//         description: "Contract & Permanent Staffing",
+//         icon: Users,
+//       },
+//       {
+//         name: "IT Solutions",
+//         href: "/it-services/it-solutions",
+//         description: "Cloud & App Development",
+//         icon: Code,
+//       },
+//     ],
+//   },
+
+//   {
+//     name: "WHO WE SERVE",
+//     href: "/who-we-serve",
+//     subItems: [
+//       {
+//         name: "Federal",
+//         href: "/who-we-serve/federal",
+//         icon: Building,
+//       },
+//       {
+//         name: "State & Education",
+//         href: "/who-we-serve/state-local-education",
+//         icon: GraduationCap,
+//       },
+//     ],
+//   },
+
+//   {
+//     name: "CONTRACTS",
+//     href: "/contracts",
+//     subItems: [
+//       {
+//         name: "GSA MAS",
+//         href: "/contracts/gsa-mas",
+//         icon: FileText,
+//       },
+//     ],
+//   },
+
+//   {
+//     name: "IMMIGRATION",
+//     href: "/immigration",
+//     subItems: [
+//       {
+//         name: "H1B Visa",
+//         href: "/immigration/h1b-visa",
+//         icon: Plane,
+//       },
+//       {
+//         name: "Green Card",
+//         href: "/immigration/green-card",
+//         icon: Award,
+//       },
+//     ],
+//   },
+
+//   {
+//     name: "PORTFOLIO",
+//     href: "/portfolio",
+//     subItems: [
+//       {
+//         name: "Staffing Cases",
+//         href: "/portfolio/staffing-cases",
+//         icon: Users,
+//       },
+//       {
+//         name: "Solution Cases",
+//         href: "/portfolio/solution-cases",
+//         icon: FolderOpen,
+//       },
+//     ],
+//   },
+
+//   {
+//     name: "CAREERS",
+//     href: "/careers",
+//   },
+
+//   {
+//     name: "EMPLOYEE RESOURCES",
+//     href: "/employee-resources",
+//     subItems: [
+//       {
+//         name: "Courses",
+//         href: "/employee-resources/courses",
+//         icon: GraduationCap,
+//       },
+//     ],
+//   },
+// ];
+
+// // Hero Slides Data
+// export const heroSlides = [
+//   {
+//     id: 1,
+//     title: "IT Staffing Solutions",
+//     subtitle: "Find the Right Talent, Faster",
+//     description:
+//       "Contract, permanent, and offshore staffing solutions for modern enterprises.",
+//     cta: { text: "Explore Staffing", href: "/it-services/it-staffing" },
+//     image: "staffing",
+//   },
+//   {
+//     id: 2,
+//     title: "IT Solutions & Development",
+//     subtitle: "Transform Your Business",
+//     description:
+//       "Application development, cloud migration, and cybersecurity solutions.",
+//     cta: { text: "View Solutions", href: "/it-services/it-solutions" },
+//     image: "solutions",
+//   },
+//   {
+//     id: 3,
+//     title: "Enterprise IT Services",
+//     subtitle: "Innovate. Modernize. Grow.",
+//     description:
+//       "End-to-end digital transformation services for future-ready businesses.",
+//     cta: { text: "Start Now", href: "/contact" },
+//     image: "transformation",
+//   },
+// ];
 import {
   Users,
   GraduationCap,
@@ -180,15 +335,17 @@ import {
 
 export interface NavSubItem {
   name: string;
-  href: string;
+  href?: string;
   description?: string;
   icon?: any;
+  disabled?: boolean;
 }
 
 export interface NavItem {
   name: string;
   href: string;
   subItems?: NavSubItem[];
+  emptyMessage?: string; // 👈 NEW (non-breaking)
 }
 
 export const navigationItems: NavItem[] = [
@@ -277,6 +434,7 @@ export const navigationItems: NavItem[] = [
   {
     name: "CAREERS",
     href: "/careers",
+    emptyMessage: "No services available", // 👈 KEY PART
   },
 
   {
@@ -289,36 +447,5 @@ export const navigationItems: NavItem[] = [
         icon: GraduationCap,
       },
     ],
-  },
-];
-
-// Hero Slides Data
-export const heroSlides = [
-  {
-    id: 1,
-    title: "IT Staffing Solutions",
-    subtitle: "Find the Right Talent, Faster",
-    description:
-      "Contract, permanent, and offshore staffing solutions for modern enterprises.",
-    cta: { text: "Explore Staffing", href: "/it-services/it-staffing" },
-    image: "staffing",
-  },
-  {
-    id: 2,
-    title: "IT Solutions & Development",
-    subtitle: "Transform Your Business",
-    description:
-      "Application development, cloud migration, and cybersecurity solutions.",
-    cta: { text: "View Solutions", href: "/it-services/it-solutions" },
-    image: "solutions",
-  },
-  {
-    id: 3,
-    title: "Enterprise IT Services",
-    subtitle: "Innovate. Modernize. Grow.",
-    description:
-      "End-to-end digital transformation services for future-ready businesses.",
-    cta: { text: "Start Now", href: "/contact" },
-    image: "transformation",
   },
 ];
