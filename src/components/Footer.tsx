@@ -75,7 +75,7 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-              Company
+              Quick Links
             </h4>
             <ul className="space-y-4">
               {quickLinks.map((link) => (
@@ -93,7 +93,7 @@ export const Footer = () => {
           <div className="lg:col-span-3">
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-              Expertise
+              Services
             </h4>
             <ul className="space-y-6">
               {serviceLinks.map((link) => (
@@ -132,7 +132,7 @@ export const Footer = () => {
                   <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400">
                     <Mail size={14} />
                   </div>
-                  Email Support
+                  worldstringitsolutions@gmail.com
                 </a>
               </div>
 
