@@ -177,7 +177,7 @@ const ServiceDetail = () => {
                 transform your business and drive meaningful results.
               </p>
               <Link
-                to="/#contact"
+                to="/contact"
                 className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105"
               >
                 Discuss Your Project
