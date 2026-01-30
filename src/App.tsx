@@ -23,7 +23,7 @@ import CoursesPage from "./pages/CoursesPage";
 import EmployeeLoginPage from "./pages/EmployeeLoginPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
-
+import AboutPage from "./pages/AboutPage";
 import RouteScrollToTop from "@/components/RouteScrollToTop";
 const queryClient = new QueryClient();
 
@@ -36,6 +36,7 @@ const App = () => (
        <RouteScrollToTop />
     <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/it-services" element={<ITServicesPage />} />
