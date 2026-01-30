@@ -436,38 +436,29 @@ export const Footer = () => {
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8">
               Quick Links
             </h4>
-
-            <ul className="space-y-4">
-
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-
-                  {link.name === "Home" ? (
-
-                    <button
-                      onClick={handleHomeClick}
-                      className="flex items-center gap-2 text-slate-400 hover:text-white w-full text-left"
-                    >
-                      <ArrowRight className="w-3 h-3 text-blue-500" />
-                      {link.name}
-                    </button>
-
-                  ) : (
-
-                    <Link
-                      to={link.href}
-                      className="flex items-center gap-2 text-slate-400 hover:text-white"
-                    >
-                      <ArrowRight className="w-3 h-3 text-blue-500" />
-                      {link.name}
-                    </Link>
-
-                  )}
-
-                </li>
-              ))}
-
-            </ul>
+<ul className="space-y-4">
+  {quickLinks.map((link) => (
+    <li key={link.name}>
+      {link.name === "Home" ? (
+        <button
+          onClick={handleHomeClick}
+          className="flex items-center gap-3 text-slate-400 hover:text-white w-full text-left"
+        >
+          <link.icon className="w-4 h-4 text-blue-500" />
+          {link.name}
+        </button>
+      ) : (
+        <Link
+          to={link.href}
+          className="flex items-center gap-3 text-slate-400 hover:text-white"
+        >
+          <link.icon className="w-4 h-4 text-blue-500" />
+          {link.name}
+        </Link>
+      )}
+    </li>
+  ))}
+</ul>
           </div>
 
           {/* Services */}
