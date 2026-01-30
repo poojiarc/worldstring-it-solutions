@@ -165,6 +165,165 @@
 
 
 
+// import { motion } from "framer-motion";
+// import {
+//   Phone,
+//   Mail,
+//   Home,
+//   Briefcase,
+//   Users,
+//   FileText,
+//   Linkedin,
+//   Instagram,
+//   ArrowRight,
+//   Globe,
+// } from "lucide-react";
+// import { Link } from "react-router-dom";
+// import logo from "../assets/favicon.svg";
+
+// const quickLinks = [
+//   { name: "Home", href: "/", icon: Home },
+//   { name: "About", href: "/about", icon: Users },
+//   { name: "Careers", href: "/careers", icon: Briefcase },
+//   { name: "Contact", href: "/contact", icon: FileText },
+// ];
+
+// const serviceLinks = [
+//   { name: "IT Staffing", href: "/it-services/it-staffing", desc: "Contract & permanent talent" },
+//   { name: "IT Solutions", href: "/it-services/it-solutions", desc: "Cloud & development" },
+//   { name: "Federal", href: "/who-we-serve/federal", desc: "Government IT services" },
+//   { name: "GSA MAS", href: "/contracts/gsa-mas", desc: "Federal contracts" },
+// ];
+
+// const socialLinks = [
+//   { icon: Linkedin, href: "#", label: "LinkedIn" },
+//   { icon: Instagram, href: "#", label: "Instagram" },
+// ];
+
+// export const Footer = () => {
+//   return (
+//     <footer className="relative bg-[#0a0c10] text-slate-300 pt-20 pb-10 overflow-hidden font-['Plus_Jakarta_Sans']">
+//       {/* Background accents */}
+//       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+//       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full" />
+//       <div className="absolute bottom-0 right-0 w-[30%] h-[30%] bg-indigo-600/5 blur-[100px] rounded-full" />
+
+//       <div className="container mx-auto px-6 lg:px-12 relative z-10">
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
+
+//           {/* Brand */}
+//           <div className="lg:col-span-4 space-y-8">
+//             <Link to="/" className="inline-block group">
+//               <div className="flex items-center gap-4">
+//                 <div className="p-2 bg-white/5 rounded-2xl border border-white/10 group-hover:border-blue-500/50 transition-colors">
+//                   <img src={logo} alt="Logo" className="h-10 w-auto" />
+//                 </div>
+//                 <div>
+//                   <span className="text-xl font-extrabold text-white group-hover:text-blue-400">
+//                     WorldString <span className="text-blue-500">IT</span>
+//                   </span>
+//                   <span className="block text-[10px] uppercase tracking-widest text-slate-500">
+//                     Solutions
+//                   </span>
+//                 </div>
+//               </div>
+//             </Link>
+
+//             <p className="text-slate-400 max-w-sm">
+//               Architecting the digital future with bespoke enterprise solutions
+//               and world-class IT talent.
+//             </p>
+
+//             <div className="flex gap-4">
+//               {socialLinks.map((social) => (
+//                 <motion.a
+//                   key={social.label}
+//                   href={social.href}
+//                   whileHover={{ y: -5, scale: 1.1 }}
+//                   className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 transition-all"
+//                 >
+//                   <social.icon size={18} />
+//                 </motion.a>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Quick Links */}
+//           <div className="lg:col-span-2">
+//             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8">
+//               Quick Links
+//             </h4>
+//             <ul className="space-y-4">
+//               {quickLinks.map((link) => (
+//                 <li key={link.name}>
+//                   <Link to={link.href} className="flex items-center gap-2 text-slate-400 hover:text-white">
+//                     <ArrowRight className="w-3 h-3 text-blue-500" />
+//                     {link.name}
+//                   </Link>
+//                 </li>
+//               ))}
+//             </ul>
+//           </div>
+
+//           {/* ✅ SERVICES (SCROLL TARGET) */}
+//           <div className="lg:col-span-3" id="footer-services">
+//             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8">
+//               Services
+//             </h4>
+//             <ul className="space-y-6">
+//               {serviceLinks.map((link) => (
+//                 <li key={link.name}>
+//                   <Link to={link.href} className="group block">
+//                     <span className="block font-semibold text-slate-200 group-hover:text-blue-400">
+//                       {link.name}
+//                     </span>
+//                     <span className="text-xs text-slate-500">
+//                       {link.desc}
+//                     </span>
+//                   </Link>
+//                 </li>
+//               ))}
+//             </ul>
+//           </div>
+
+//           {/* Contact */}
+//           <div className="lg:col-span-3">
+//             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 relative">
+//               <Globe className="absolute top-4 right-4 w-16 h-16 text-blue-500/10" />
+//               <h4 className="text-white font-bold mb-6">Connect Now</h4>
+
+//               <div className="space-y-4 text-sm">
+//                 <a href="tel:6605285383" className="flex items-center gap-3 hover:text-white">
+//                   <Phone size={14} /> +1 (660) 528-5383
+//                 </a>
+//                 <a href="mailto:worldstringitsolutions@gmail.com" className="flex items-center gap-3 hover:text-white break-all">
+//                   <Mail size={14} /> worldstringitsolutions@gmail.com
+//                 </a>
+//               </div>
+
+//               <div className="mt-6 pt-4 border-t border-white/10 flex justify-between text-xs">
+//                 <span>Mon — Sat</span>
+//                 <span className="text-blue-400 font-bold">9AM — 5PM</span>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Bottom */}
+//         <div className="pt-6 border-t border-white/10 flex justify-between text-xs text-slate-500">
+//           <p>© {new Date().getFullYear()} WorldString IT Solutions</p>
+//           <div className="flex gap-4">
+//             <Link to="#">Privacy Policy</Link>
+//             <Link to="#">Terms</Link>
+//           </div>
+//         </div>
+//       </div>
+//     </footer>
+//   );
+// };
+
+
+
 import { motion } from "framer-motion";
 import {
   Phone,
@@ -178,7 +337,7 @@ import {
   ArrowRight,
   Globe,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/favicon.svg";
 
 const quickLinks = [
@@ -201,31 +360,53 @@ const socialLinks = [
 ];
 
 export const Footer = () => {
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    if (location.pathname === "/") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
     <footer className="relative bg-[#0a0c10] text-slate-300 pt-20 pb-10 overflow-hidden font-['Plus_Jakarta_Sans']">
+
       {/* Background accents */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full" />
       <div className="absolute bottom-0 right-0 w-[30%] h-[30%] bg-indigo-600/5 blur-[100px] rounded-full" />
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
 
           {/* Brand */}
           <div className="lg:col-span-4 space-y-8">
+
             <Link to="/" className="inline-block group">
               <div className="flex items-center gap-4">
+
                 <div className="p-2 bg-white/5 rounded-2xl border border-white/10 group-hover:border-blue-500/50 transition-colors">
                   <img src={logo} alt="Logo" className="h-10 w-auto" />
                 </div>
+
                 <div>
                   <span className="text-xl font-extrabold text-white group-hover:text-blue-400">
                     WorldString <span className="text-blue-500">IT</span>
                   </span>
+
                   <span className="block text-[10px] uppercase tracking-widest text-slate-500">
                     Solutions
                   </span>
                 </div>
+
               </div>
             </Link>
 
@@ -246,78 +427,131 @@ export const Footer = () => {
                 </motion.a>
               ))}
             </div>
+
           </div>
 
           {/* Quick Links */}
           <div className="lg:col-span-2">
+
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8">
               Quick Links
             </h4>
+
             <ul className="space-y-4">
+
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.href} className="flex items-center gap-2 text-slate-400 hover:text-white">
-                    <ArrowRight className="w-3 h-3 text-blue-500" />
-                    {link.name}
-                  </Link>
+
+                  {link.name === "Home" ? (
+
+                    <button
+                      onClick={handleHomeClick}
+                      className="flex items-center gap-2 text-slate-400 hover:text-white w-full text-left"
+                    >
+                      <ArrowRight className="w-3 h-3 text-blue-500" />
+                      {link.name}
+                    </button>
+
+                  ) : (
+
+                    <Link
+                      to={link.href}
+                      className="flex items-center gap-2 text-slate-400 hover:text-white"
+                    >
+                      <ArrowRight className="w-3 h-3 text-blue-500" />
+                      {link.name}
+                    </Link>
+
+                  )}
+
                 </li>
               ))}
+
             </ul>
           </div>
 
-          {/* ✅ SERVICES (SCROLL TARGET) */}
-          <div className="lg:col-span-3" id="footer-services">
+          {/* Services */}
+          <div className="lg:col-span-3">
+
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8">
               Services
             </h4>
+
             <ul className="space-y-6">
+
               {serviceLinks.map((link) => (
                 <li key={link.name}>
+
                   <Link to={link.href} className="group block">
+
                     <span className="block font-semibold text-slate-200 group-hover:text-blue-400">
                       {link.name}
                     </span>
+
                     <span className="text-xs text-slate-500">
                       {link.desc}
                     </span>
+
                   </Link>
+
                 </li>
               ))}
+
             </ul>
+
           </div>
 
           {/* Contact */}
           <div className="lg:col-span-3">
+
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 relative">
+
               <Globe className="absolute top-4 right-4 w-16 h-16 text-blue-500/10" />
+
               <h4 className="text-white font-bold mb-6">Connect Now</h4>
 
               <div className="space-y-4 text-sm">
+
                 <a href="tel:6605285383" className="flex items-center gap-3 hover:text-white">
                   <Phone size={14} /> +1 (660) 528-5383
                 </a>
-                <a href="mailto:worldstringitsolutions@gmail.com" className="flex items-center gap-3 hover:text-white break-all">
+
+                <a
+                  href="mailto:worldstringitsolutions@gmail.com"
+                  className="flex items-center gap-3 hover:text-white break-all"
+                >
                   <Mail size={14} /> worldstringitsolutions@gmail.com
                 </a>
+
               </div>
 
               <div className="mt-6 pt-4 border-t border-white/10 flex justify-between text-xs">
+
                 <span>Mon — Sat</span>
                 <span className="text-blue-400 font-bold">9AM — 5PM</span>
+
               </div>
+
             </div>
+
           </div>
+
         </div>
 
         {/* Bottom */}
         <div className="pt-6 border-t border-white/10 flex justify-between text-xs text-slate-500">
+
           <p>© {new Date().getFullYear()} WorldString IT Solutions</p>
+
           <div className="flex gap-4">
             <Link to="#">Privacy Policy</Link>
             <Link to="#">Terms</Link>
           </div>
+
         </div>
+
       </div>
+
     </footer>
   );
 };
