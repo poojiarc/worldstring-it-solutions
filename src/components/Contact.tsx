@@ -84,10 +84,28 @@ export const Contact = () => {
 
   const subServices = selectedService?.subItems ?? [];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
-  };
+ const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const subject = `Contact from ${formData.name}`;
+  
+  const body = `
+Name: ${formData.name}
+Email: ${formData.email}
+Service: ${formData.serviceType}
+Sub Service: ${formData.subService}
+
+Message:
+${formData.message}
+  `;
+
+  const mailtoLink = `mailto:worldstringitsolutions@gmail.com?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
+
+  window.location.href = mailtoLink;
+};
+
 
   return (
     <section className="py-12 md:py-20 lg:py-28 relative overflow-hidden bg-slate-50/50">
