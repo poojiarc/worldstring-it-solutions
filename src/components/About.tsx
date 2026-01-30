@@ -191,17 +191,14 @@ export const About = () => {
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/15 to-accent/10 animate-pulse-glow" />
               <div className="absolute inset-8 rounded-full bg-background border border-border shadow-lg" />
 
-              {/* Central Branding */}
-              <div className="absolute inset-16 rounded-full bg-gradient-to-br from-primary/10 to-transparent flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-5xl md:text-6xl font-bold text-gradient mb-2">
-                    W|S
-                  </div>
-                  <div className="text-muted-foreground text-sm uppercase tracking-widest">
-                    IT Solutions
-                  </div>
-                </div>
-              </div>
+              {/* Central Background Image */}
+<div
+  className="absolute inset-16 rounded-full bg-center bg-cover bg-no-repeat"
+  style={{
+    backgroundImage: "url('/Gemini_Generated_Image_t62r5xt62r5xt62r.png')",
+  }}
+/>
+
 
               {/* Orbiting Elements */}
               <motion.div
