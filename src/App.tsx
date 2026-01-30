@@ -24,6 +24,7 @@ import EmployeeLoginPage from "./pages/EmployeeLoginPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
+import RouteScrollToTop from "@/components/RouteScrollToTop";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,6 +33,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+       <RouteScrollToTop />
     <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<ServicesPage />} />

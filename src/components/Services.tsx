@@ -1,118 +1,5 @@
 // import { motion } from "framer-motion";
 // import { Link } from "react-router-dom";
-// import { ArrowRight } from "lucide-react";
-// import { services } from "@/data/services";
-
-// const containerVariants = {
-//   hidden: { opacity: 0 },
-//   visible: {
-//     opacity: 1,
-//     transition: {
-//       staggerChildren: 0.1,
-//     },
-//   },
-// };
-
-// const itemVariants = {
-//   hidden: { opacity: 0, y: 20 },
-//   visible: {
-//     opacity: 1,
-//     y: 0,
-//     transition: {
-//       duration: 0.5,
-//     },
-//   },
-// };
-
-// export const Services = () => {
-//   return (
-//     <section id="services" className="py-24 lg:py-32 relative bg-background">
-//       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-//         {/* Section Header */}
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 0.6 }}
-//           className="text-center mb-16"
-//         >
-//           <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-//             What We Offer
-//           </span>
-//           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">
-//             Our Services
-//           </h2>
-//           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-//             Customized IT solutions tailored to your business needs. We deliver
-//             excellence across every technology domain.
-//           </p>
-//         </motion.div>
-
-//         {/* Services Grid */}
-//         <motion.div
-//           variants={containerVariants}
-//           initial="hidden"
-//           whileInView="visible"
-//           viewport={{ once: true }}
-//           className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
-//         >
-//           {services.map((service, index) => (
-//             <motion.div
-//               key={index}
-//               variants={itemVariants}
-//               className="group relative bg-background border border-border rounded-2xl p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 flex flex-col"
-//             >
-//               {/* Icon */}
-//               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
-//                 <service.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
-//               </div>
-
-//               {/* Content */}
-//               <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-//                 {service.title}
-//               </h3>
-//               <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-grow line-clamp-3">
-//                 {service.shortDescription}
-//               </p>
-
-//               {/* Read More Button */}
-//               <Link
-//                 to={`/services/${service.slug}`}
-//                 className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:gap-3 transition-all duration-300"
-//               >
-//                 Read More
-//                 <ArrowRight className="w-4 h-4" />
-//               </Link>
-//             </motion.div>
-//           ))}
-//         </motion.div>
-
-//         {/* View All Services Link */}
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 0.6, delay: 0.4 }}
-//           className="text-center mt-12"
-//         >
-//           <Link
-//             to="/services"
-//             className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-300"
-//           >
-//             View All Services
-//             <ArrowRight className="w-5 h-5" />
-//           </Link>
-//         </motion.div>
-//       </div>
-//     </section>
-//   );
-// };
-
-
-
-
-// import { motion } from "framer-motion";
-// import { Link } from "react-router-dom";
 // import { ArrowRight, Sparkles } from "lucide-react";
 // import { services } from "@/data/services";
 
@@ -247,9 +134,18 @@
 // };
 
 
+
+
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  Users,
+  Building2,
+  FileText,
+} from "lucide-react";
+
 import { services } from "@/data/services";
 
 const containerVariants = {
@@ -269,78 +165,134 @@ const itemVariants = {
   },
 };
 
-// 👇 SCROLL HANDLER
-const scrollToFooterServices = () => {
-  const el = document.getElementById("footer-services");
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-};
+/* 🔹 First 3 custom cards */
+const topServices = [
+  {
+    title: "IT Staffing",
+    shortDescription:
+      "Flexible IT staffing solutions including contract, contract-to-hire, and full-time placements tailored to your business needs.",
+    icon: Users,
+    link: "/it-services/it-staffing",
+  },
+  {
+    title: "Federal",
+    shortDescription:
+      "Technology solutions and staffing services designed specifically for U.S. federal agencies and government organizations.",
+    icon: Building2, // ✅ replaced Landmark
+    link: "/who-we-serve/federal",
+  },
+  {
+    title: "GSA MAS",
+    shortDescription:
+      "Simplified procurement through GSA Multiple Award Schedule for federal and public sector customers.",
+    icon: FileText,
+    link: "/contracts/gsa-mas",
+  },
+];
+
 
 export const Services = () => {
   return (
-    <section id="services" className="py-24 lg:py-32 bg-slate-50/50">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section
+      id="services"
+      className="py-24 lg:py-32 relative bg-slate-50/50 overflow-hidden"
+    >
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 blur-[120px] rounded-full -z-10" />
 
-        {/* Header */}
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border text-xs font-bold uppercase">
-            <Sparkles className="w-3 h-3" /> What We Offer
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-primary font-bold text-xs uppercase tracking-tighter mb-4">
+            <Sparkles className="w-3 h-3" />
+            What We Offer
           </span>
 
-          <h2 className="text-4xl md:text-5xl font-extrabold mt-6 mb-4">
-            Our <span className="text-blue-600">Services</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mt-2 mb-6 tracking-tight">
+            Our{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              Services
+            </span>
           </h2>
+
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto font-medium">
+            Customized IT solutions tailored to your business needs.
+          </p>
         </motion.div>
 
-        {/* Grid */}
+        {/* Services Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
         >
-          {services.map((service, index) => {
-            const CardContent = (
-              <div className="h-full bg-white rounded-[2rem] p-8 border group-hover:shadow-xl transition-all">
-                <div className="w-14 h-14 rounded-xl bg-slate-50 flex items-center justify-center mb-6">
-                  <service.icon className="w-7 h-7 text-blue-600" />
+          {/* 🔹 First 3 replacement cards */}
+          {topServices.map((service, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ y: -10 }}
+            >
+              <Link to={service.link} className="block h-full group">
+                <div className="relative h-full bg-white border border-slate-200 rounded-[2rem] p-8 transition-all duration-500 overflow-hidden group-hover:border-blue-400 group-hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.15)]">
+                  <div className="absolute -inset-px bg-gradient-to-br from-blue-600/20 via-transparent to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-8 group-hover:bg-blue-600 transition-all">
+                    <service.icon className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors" />
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-sm mb-8">
+                    {service.shortDescription}
+                  </p>
+
+                  <div className="flex items-center gap-2 text-blue-600 font-bold text-sm">
+                    Explore Now
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                  </div>
                 </div>
+              </Link>
+            </motion.div>
+          ))}
 
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-slate-500 text-sm mb-6 line-clamp-3">
-                  {service.shortDescription}
-                </p>
+          {/* 🔹 Remaining existing services (UNCHANGED) */}
+          {services.slice(3).map((service, index) => (
+            <motion.div
+              key={service.slug}
+              variants={itemVariants}
+              whileHover={{ y: -10 }}
+            >
+              <Link to={`/services/${service.slug}`} className="block h-full group">
+                <div className="relative h-full bg-white border border-slate-200 rounded-[2rem] p-8 transition-all duration-500 overflow-hidden group-hover:border-blue-400 group-hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.15)]">
+                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-8 group-hover:bg-blue-600 transition-all">
+                    <service.icon className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors" />
+                  </div>
 
-                <div className="flex items-center gap-2 text-blue-600 font-semibold text-sm">
-                  Read More <ArrowRight className="w-4 h-4" />
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-sm mb-8 line-clamp-3">
+                    {service.shortDescription}
+                  </p>
+
+                  <div className="flex items-center gap-2 text-blue-600 font-bold text-sm">
+                    Explore Now
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                  </div>
                 </div>
-              </div>
-            );
-
-            return (
-              <motion.div key={index} variants={itemVariants}>
-                {service.scrollToFooter ? (
-                  <button
-                    onClick={scrollToFooterServices}
-                    className="block w-full text-left"
-                  >
-                    {CardContent}
-                  </button>
-                ) : (
-                  <Link to={`/services/${service.slug}`}>
-                    {CardContent}
-                  </Link>
-                )}
-              </motion.div>
-            );
-          })}
+              </Link>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
