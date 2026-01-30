@@ -618,7 +618,7 @@ html, body {
   width: max-content;
   display: flex;
   align-items: center;
-  animation: scroll-left 25s linear infinite;
+  animation: scroll-left 40s linear infinite;
 }
 
 /* Pause on hover (optional but premium feel) */
