@@ -439,21 +439,24 @@ export const Footer = () => {
 <ul className="space-y-4">
   {quickLinks.map((link) => (
     <li key={link.name}>
+      {/* We use a shared class string to ensure identical formatting 
+          (Font: Plus Jakarta Sans, Color: Slate-400, Icon: Blue-500)
+      */}
       {link.name === "Home" ? (
         <button
           onClick={handleHomeClick}
-          className="flex items-center gap-3 text-slate-400 hover:text-white w-full text-left"
+          className="flex items-center gap-3 text-slate-400 hover:text-white w-full text-left transition-colors font-['Plus_Jakarta_Sans']"
         >
           <link.icon className="w-4 h-4 text-blue-500" />
-          {link.name}
+          <span className="font-medium">{link.name}</span>
         </button>
       ) : (
         <Link
           to={link.href}
-          className="flex items-center gap-3 text-slate-400 hover:text-white"
+          className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors font-['Plus_Jakarta_Sans']"
         >
           <link.icon className="w-4 h-4 text-blue-500" />
-          {link.name}
+          <span className="font-medium">{link.name}</span>
         </Link>
       )}
     </li>

@@ -23,6 +23,7 @@ export interface Service {
   mediumDescription: string;
   longDescription: string;
   offerings: ServiceOffering[];
+  image?: string;
 }
 
 export const services: Service[] = [
@@ -30,6 +31,7 @@ export const services: Service[] = [
     icon: Brain,
     title: "AI & Innovation Lab",
     slug: "ai-innovation-lab",
+    image: "/Images/ai-innovation-lab.jpg",
     shortDescription:
       "Leverage artificial intelligence and emerging technologies to build intelligent, future-ready solutions. We help organizations innovate faster using data-driven and AI-powered systems.",
     mediumDescription:
@@ -67,6 +69,7 @@ export const services: Service[] = [
     icon: Package,
     title: "Products & Solutions",
     slug: "products-solutions",
+    image: "/Images/products-solutions.jpg",
     shortDescription:
       "We design and deliver scalable digital products tailored to business and industry needs. From concept to deployment, our solutions drive efficiency and growth.",
     mediumDescription:
@@ -104,6 +107,7 @@ export const services: Service[] = [
     icon: Zap,
     title: "Digital Transformation",
     slug: "digital-transformation",
+    image: "/Images/digital-transformation.jpg",
     shortDescription:
       "Modernize your business with technology-driven transformation strategies. We help organizations shift to agile, digital-first operations.",
     mediumDescription:
@@ -141,6 +145,7 @@ export const services: Service[] = [
     icon: Server,
     title: "IT Infrastructure",
     slug: "it-infrastructure",
+    image: "/Images/It infrastructure.jpg",
     shortDescription:
       "Build secure, reliable, and scalable IT infrastructure for enterprise environments. We ensure high availability, performance, and operational efficiency.",
     mediumDescription:
@@ -178,6 +183,7 @@ export const services: Service[] = [
     icon: Shield,
     title: "Cyber Security",
     slug: "cyber-security",
+    image: "/Images/Cyber security.jpg",
     shortDescription:
       "Protect your digital assets with advanced security strategies and solutions. We safeguard systems, data, and networks against evolving threats.",
     mediumDescription:
@@ -215,6 +221,7 @@ export const services: Service[] = [
     icon: Cloud,
     title: "Cloud Solutions",
     slug: "cloud-solutions",
+    image:"/Images/Cloud Solutions.jpg",
     shortDescription:
       "Accelerate growth with secure and scalable cloud-based architectures. We help businesses migrate, manage, and optimize cloud environments.",
     mediumDescription:
@@ -252,6 +259,7 @@ export const services: Service[] = [
     icon: GitBranch,
     title: "Agile Development",
     slug: "agile-development",
+    image: "/Images/Agiledevelopment.jpg",
     shortDescription:
       "Deliver high-quality software faster using agile and DevOps methodologies. We enable continuous improvement, collaboration, and rapid delivery.",
     mediumDescription:
@@ -289,6 +297,7 @@ export const services: Service[] = [
     icon: Blocks,
     title: "Low-Code / No-Code",
     slug: "low-code-no-code",
+    image: "/Images/Lowcode,nocode.jpg",
     shortDescription:
       "Build applications faster with minimal coding using modern platforms. We empower businesses to innovate quickly with reduced development costs.",
     mediumDescription:

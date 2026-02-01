@@ -108,7 +108,7 @@ ${formData.message}
 
 
   return (
-    <section className="py-12 md:py-20 lg:py-28 relative overflow-hidden bg-slate-50/50">
+    <section className="py-8 md:py-8 lg:py-8 relative overflow-hidden bg-slate-50/50">
       <FloatingOrb className="top-0 left-0 bg-primary/10" size="xl" />
       <FloatingOrb className="bottom-0 right-0 bg-accent/10" size="lg" />
 
@@ -277,7 +277,7 @@ ${formData.message}
 
               <Button className="w-full h-14 rounded-2xl text-lg font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40">
                 <Send className="mr-2" />
-                Send Message
+                Send Us a Message
               </Button>
             </form>
           </motion.div>

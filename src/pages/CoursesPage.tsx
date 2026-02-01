@@ -1,3 +1,40 @@
+// import { motion } from "framer-motion";
+// import { GraduationCap, BookOpen, Award, Code } from "lucide-react";
+// import { PageLayout } from "@/components/PageLayout";
+// import { PageHero } from "@/components/PageHero";
+
+// const courses = [
+//   { icon: Code, title: "Cloud Certifications", description: "AWS, Azure, GCP certification prep", category: "Technical" },
+//   { icon: BookOpen, title: "Agile & Scrum", description: "Scrum Master & Product Owner training", category: "Methodology" },
+//   { icon: Award, title: "Security Training", description: "CISSP, Security+ preparation", category: "Security" },
+//   { icon: GraduationCap, title: "Leadership Development", description: "Management & leadership skills", category: "Professional" },
+// ];
+
+// const CoursesPage = () => (
+//   <PageLayout>
+//     <PageHero title="Employee Courses" subtitle="Learning & Development" description="Continuous learning opportunities for WorldString employees." icon={GraduationCap} />
+//     <section className="py-20">
+//       <div className="container mx-auto px-4 lg:px-8">
+//         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+//           {courses.map((course, index) => (
+//             <motion.div key={course.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-card border border-border rounded-xl p-6">
+//               <div className="flex items-center gap-4 mb-4">
+//                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center"><course.icon className="w-6 h-6 text-primary" /></div>
+//                 <span className="text-xs bg-secondary px-3 py-1 rounded-full text-muted-foreground">{course.category}</span>
+//               </div>
+//               <h3 className="text-lg font-semibold text-foreground mb-2">{course.title}</h3>
+//               <p className="text-muted-foreground">{course.description}</p>
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   </PageLayout>
+// );
+
+// export default CoursesPage;
+
+
 import { motion } from "framer-motion";
 import { GraduationCap, BookOpen, Award, Code } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
@@ -12,23 +49,69 @@ const courses = [
 
 const CoursesPage = () => (
   <PageLayout>
-    <PageHero title="Employee Courses" subtitle="Learning & Development" description="Continuous learning opportunities for WorldString employees." icon={GraduationCap} />
-    <section className="py-20">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {courses.map((course, index) => (
-            <motion.div key={course.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-card border border-border rounded-xl p-6">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center"><course.icon className="w-6 h-6 text-primary" /></div>
-                <span className="text-xs bg-secondary px-3 py-1 rounded-full text-muted-foreground">{course.category}</span>
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">{course.title}</h3>
-              <p className="text-muted-foreground">{course.description}</p>
-            </motion.div>
-          ))}
-        </div>
+
+    {/* Background */}
+    <div
+      className="min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/Images/courses.jpg')",
+      }}
+    >
+      {/* Overlay */}
+      <div className="min-h-screen bg-background/60 text-justify">
+
+        <PageHero
+          title="Employee Courses"
+          subtitle="Learning & Development"
+          description="Continuous learning opportunities for WorldString employees."
+          icon={GraduationCap}
+        />
+
+        <section className="py-20">
+          <div className="container mx-auto px-4 lg:px-8">
+
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+              {courses.map((course, index) => (
+                <motion.div
+                  key={course.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white/90 backdrop-blur-md border border-border rounded-xl p-6"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <course.icon className="w-6 h-6 text-primary" />
+                    </div>
+
+                    <span className="text-xs bg-secondary px-3 py-1 rounded-full text-muted-foreground">
+                      {course.category}
+                    </span>
+
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {course.title}
+                  </h3>
+
+                  <p className="text-muted-foreground">
+                    {course.description}
+                  </p>
+
+                </motion.div>
+              ))}
+
+            </div>
+
+          </div>
+        </section>
+
       </div>
-    </section>
+    </div>
+
   </PageLayout>
 );
 

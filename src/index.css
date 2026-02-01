@@ -1,7 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 /* Global Font Setup */
+@layer base {
+  html, body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+}
+
 body {
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 400;
@@ -561,6 +568,16 @@ button.bg-primary:hover {
   .animate-shimmer {
     animation: shimmer 2s linear infinite;
   }
+/* This adds a small 20px gap at the top of every page */
+main > section:first-of-type {
+  padding-top: 80px !important;
+  margin-top: 0 !important;
+}
+
+/* This ensures the main container doesn't override it with 0 */
+main {
+  padding-top: 0 !important;
+}
 
   @keyframes shimmer {
     0% { background-position: -200% 0; }

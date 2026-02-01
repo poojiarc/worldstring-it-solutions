@@ -35,7 +35,7 @@ const ITServicesPage = () => {
         icon={Code}
       />
 
-      <section className="py-20 lg:py-28 bg-background">
+      <section className="py-16 lg:py-12 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {itServicesCards.map((service, index) => (

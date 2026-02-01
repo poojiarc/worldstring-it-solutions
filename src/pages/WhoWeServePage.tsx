@@ -46,7 +46,7 @@ const WhoWeServePage = () => {
       />
 
       {/* Sectors */}
-      <section className="py-20 lg:py-28">
+      <section className="py-16 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {sectors.map((sector, index) => (

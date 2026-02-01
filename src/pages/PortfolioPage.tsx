@@ -15,7 +15,7 @@ const PortfolioPage = () => {
   return (
     <PageLayout>
       <PageHero title="Portfolio" subtitle="Our Work" description="Explore our success stories and case studies across staffing and solution engagements." icon={FolderOpen} />
-      <section className="py-20">
+      <section className="py-10">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {portfolioTypes.map((item, index) => (

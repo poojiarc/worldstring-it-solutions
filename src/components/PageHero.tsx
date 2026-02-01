@@ -21,7 +21,7 @@ export const PageHero = ({ title, subtitle, description, icon: Icon, badge }: Pa
         backgroundSize: '50px 50px'
       }} />
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-16">
+      <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
