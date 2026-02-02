@@ -449,3 +449,34 @@ export const navigationItems: NavItem[] = [
     ],
   },
 ];
+
+// Hero Slides Data
+export const heroSlides = [
+  {
+    id: 1,
+    title: "IT Staffing Solutions",
+    subtitle: "Find the Right Talent, Faster",
+    description:
+      "Contract, permanent, and offshore staffing solutions for modern enterprises.",
+    cta: { text: "Explore Staffing", href: "/it-services/it-staffing" },
+    image: "staffing",
+  },
+  {
+    id: 2,
+    title: "IT Solutions & Development",
+    subtitle: "Transform Your Business",
+    description:
+      "Application development, cloud migration, and cybersecurity solutions.",
+    cta: { text: "View Solutions", href: "/it-services/it-solutions" },
+    image: "solutions",
+  },
+  {
+    id: 3,
+    title: "Enterprise IT Services",
+    subtitle: "Innovate. Modernize. Grow.",
+    description:
+      "End-to-end digital transformation services for future-ready businesses.",
+    cta: { text: "Start Now", href: "/contact" },
+    image: "transformation",
+  },
+];
