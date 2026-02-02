@@ -336,6 +336,11 @@ import {
   Instagram,
   ArrowRight,
   Globe,
+  Server,
+  Shield,
+  Cloud,
+  Brain,
+  Building,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/favicon.svg";
@@ -343,15 +348,17 @@ import logo from "../assets/favicon.svg";
 const quickLinks = [
   { name: "Home", href: "/", icon: Home },
   { name: "About", href: "/about", icon: Users },
+  { name: "Services", href: "/services", icon: Server },
   { name: "Careers", href: "/careers", icon: Briefcase },
   { name: "Contact", href: "/contact", icon: FileText },
 ];
 
 const serviceLinks = [
-  { name: "IT Staffing", href: "/it-services/it-staffing", desc: "Contract & permanent talent" },
-  { name: "IT Solutions", href: "/it-services/it-solutions", desc: "Cloud & development" },
-  { name: "Federal", href: "/who-we-serve/federal", desc: "Government IT services" },
-  { name: "GSA MAS", href: "/contracts/gsa-mas", desc: "Federal contracts" },
+  { name: "IT Staffing", href: "/it-services/it-staffing", icon: Users, desc: "Contract & permanent talent" },
+  { name: "IT Solutions", href: "/it-services/it-solutions", icon: Server, desc: "Cloud & development" },
+  { name: "Cyber Security", href: "/services/cyber-security", icon: Shield, desc: "Enterprise protection" },
+  { name: "Cloud Solutions", href: "/services/cloud-solutions", icon: Cloud, desc: "AWS, Azure & GCP" },
+  { name: "AI & Innovation", href: "/services/ai-innovation-lab", icon: Brain, desc: "ML & AI solutions" },
 ];
 
 const socialLinks = [
@@ -433,7 +440,8 @@ export const Footer = () => {
           {/* Quick Links */}
           <div className="lg:col-span-2">
 
-            <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8">
+            <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8 flex items-center gap-2">
+              <Globe className="w-4 h-4 text-blue-500" />
               Quick Links
             </h4>
 <ul className="space-y-4">
@@ -467,25 +475,27 @@ export const Footer = () => {
           {/* Services */}
           <div className="lg:col-span-3">
 
-            <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8">
+            <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-8 flex items-center gap-2">
+              <Server className="w-4 h-4 text-blue-500" />
               Services
             </h4>
 
-            <ul className="space-y-6">
+            <ul className="space-y-5">
 
               {serviceLinks.map((link) => (
                 <li key={link.name}>
 
-                  <Link to={link.href} className="group block">
+                  <Link to={link.href} className="group flex items-start gap-3">
+                    <link.icon className="w-4 h-4 text-blue-500 mt-0.5 group-hover:text-blue-400 transition-colors" />
+                    <div>
+                      <span className="block font-semibold text-slate-200 group-hover:text-blue-400 transition-colors">
+                        {link.name}
+                      </span>
 
-                    <span className="block font-semibold text-slate-200 group-hover:text-blue-400">
-                      {link.name}
-                    </span>
-
-                    <span className="text-xs text-slate-500">
-                      {link.desc}
-                    </span>
-
+                      <span className="text-xs text-slate-500">
+                        {link.desc}
+                      </span>
+                    </div>
                   </Link>
 
                 </li>
@@ -500,9 +510,12 @@ export const Footer = () => {
 
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 relative">
 
-              <Globe className="absolute top-4 right-4 w-16 h-16 text-blue-500/10" />
+              <Globe className="absolute top-4 right-4 w-16 h-16 text-blue-500/20" />
 
-              <h4 className="text-white font-bold mb-6">Connect Now</h4>
+              <h4 className="text-white font-bold mb-6 flex items-center gap-2">
+                <Globe className="w-5 h-5 text-blue-500" />
+                Connect Now
+              </h4>
 
               <div className="space-y-4 text-sm">
 
