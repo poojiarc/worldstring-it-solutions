@@ -195,7 +195,7 @@ export const PageHero = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-lg text-muted-foreground max-w-2xl mx-auto"
+              className="text-lg text-muted-foreground max-w-2xl mx-auto text-center"
             >
               {description}
             </motion.p>
