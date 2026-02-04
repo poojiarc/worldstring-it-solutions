@@ -356,7 +356,7 @@ button.bg-primary:hover {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
     font-size: 17px;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -364,6 +364,12 @@ button.bg-primary:hover {
     font-weight: 800;
     letter-spacing: -0.02em;
     color: hsl(var(--foreground));
+  }
+
+  .font-heading {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
   }
 
   h1 {
@@ -381,6 +387,7 @@ button.bg-primary:hover {
   p {
     text-align: justify;
     color: hsl(var(--muted-foreground));
+    hyphens: auto;
   }
 }
 
