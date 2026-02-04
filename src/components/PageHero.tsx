@@ -111,26 +111,35 @@ export const PageHero = ({
   badge,
 }: PageHeroProps) => {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden bg-secondary/30">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(210_100%_45%_/_0.06)_0%,_transparent_50%)]" />
+    <section className="relative py-10 lg:py-14 overflow-hidden">
+
+      {/* Banner Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/Images/banner.jpg')",
+        }}
+      />
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Grid Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
           backgroundSize: "50px 50px",
         }}
       />
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10 pt-0">
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
 
         {/* Back to Home */}
-        <div className="mb-6">
+        <div className="mb-4">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+            className="inline-flex items-center gap-2 text-white font-semibold hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
@@ -149,19 +158,19 @@ export const PageHero = ({
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
-              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 mb-4"
+              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 border border-white/20 mb-4"
             >
-              <Icon className="w-8 h-8 text-primary" />
+              <Icon className="w-8 h-8 text-white" />
             </motion.div>
           )}
 
-          {/* Subtitle now centered under icon */}
+          {/* Subtitle */}
           {subtitle && (
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.15 }}
-              className="w-full text-center text-primary font-semibold text-sm uppercase tracking-wider mb-3 flex justify-center"
+              className="text-white font-semibold text-sm uppercase tracking-wider mb-3"
             >
               {subtitle}
             </motion.p>
@@ -173,9 +182,11 @@ export const PageHero = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-4"
             >
-              <span className="text-primary font-medium text-sm">{badge}</span>
+              <span className="text-white font-medium text-sm">
+                {badge}
+              </span>
             </motion.div>
           )}
 
@@ -184,7 +195,7 @@ export const PageHero = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
           >
             {title}
           </motion.h1>
@@ -195,7 +206,7 @@ export const PageHero = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-lg text-muted-foreground max-w-2xl mx-auto text-center"
+              className="text-lg text-white/90 max-w-2xl mx-auto"
             >
               {description}
             </motion.p>
@@ -205,3 +216,4 @@ export const PageHero = ({
     </section>
   );
 };
+
