@@ -5,9 +5,9 @@ import { services } from "@/data/services";
 import { FloatingOrb, Particles } from "@/components/ui/animated-background";
 
 // Import images for custom top services
-import itStaffingImg from "/Images/it staffing.jpg";
-import federalImg from "/Images/federal.jpg";
-import gsaMasImg from "/Images/GSAMAS.jpg";
+import itStaffingImg from "@/assets/services/it-staffing.jpg";
+import federalImg from "@/assets/services/federal.jpg";
+import gsaMasImg from "@/assets/services/gsa-mas.jpg";
 
 /* 🔹 First 3 custom cards with images */
 const topServices = [
