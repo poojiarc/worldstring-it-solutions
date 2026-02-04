@@ -170,7 +170,7 @@ export const PageHero = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.15 }}
-              className="text-white font-semibold text-sm uppercase tracking-wider mb-3"
+              className="text-white font-semibold text-sm uppercase tracking-wider mb-3 text-center"
             >
               {subtitle}
             </motion.p>
