@@ -70,17 +70,17 @@ export const Careers = () => {
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-10 py-6 text-lg shadow-button transition-all duration-300 hover:shadow-glow"
             >
-              <a href="mailto:worldstringitsolutions@gmail.com?subject=Resume Submission - Career Opportunity">
+              <a href="mailto:info@worldstringitsolutions.com?subject=Resume Submission - Career Opportunity">
                 Email Your Resume
               </a>
             </Button>
             <p className="text-muted-foreground text-sm mt-4">
               Send your resume to:{" "}
               <a
-                href="mailto:worldstringitsolutions@gmail.com"
+                href="mailto:info@worldstringitsolutions.com"
                 className="text-primary hover:underline"
               >
-                worldstringitsolutions@gmail.com
+                info@worldstringitsolutions.com
               </a>
             </p>
           </motion.div>

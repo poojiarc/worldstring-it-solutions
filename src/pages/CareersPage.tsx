@@ -84,7 +84,7 @@ const CareersPage = () => (
                     size="sm"
                     onClick={() =>
                       window.location.href =
-                        "mailto:worldstringitsolutions@gmail.com?subject=Application: " +
+                        "mailto:info@worldstringitsolutions.com?subject=Application: " +
                         pos.title
                     }
                     className="font-semibold"
@@ -101,7 +101,7 @@ const CareersPage = () => (
                 size="lg"
                 onClick={() =>
                   window.location.href =
-                    "mailto:worldstringitsolutions@gmail.com?subject=Resume Submission"
+                    "mailto:info@worldstringitsolutions.com?subject=Resume Submission"
                 }
                 className="btn-premium text-white"
               >

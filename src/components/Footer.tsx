@@ -159,11 +159,11 @@ export const Footer = () => {
 
                 {/* EMAIL — ONE LINE */}
                 <a
-                  href="mailto:worldstringitsolutions@gmail.com"
+                  href="mailto:info@worldstringitsolutions.com"
                   className="flex items-center gap-3 hover:text-blue-600 whitespace-nowrap"
                 >
                   <Mail size={14} />
-                  worldstringitsolutions@gmail.com
+                  info@worldstringitsolutions.com
                 </a>
               </div>
 

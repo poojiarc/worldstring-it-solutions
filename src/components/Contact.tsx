@@ -34,8 +34,8 @@ const contactCards = [
   {
     icon: Mail,
     label: "Email Us",
-    value: "worldstringitsolutions@gmail.com",
-    href: "mailto:worldstringitsolutions@gmail.com",
+    value: "info@worldstringitsolutions.com",
+    href: "mailto:info@worldstringitsolutions.com",
     desc: "We respond within 24 hours",
     color: "from-primary to-accent",
   },
@@ -99,7 +99,7 @@ Message:
 ${formData.message}
   `;
 
-  const mailtoLink = `mailto:worldstringitsolutions@gmail.com?subject=${encodeURIComponent(
+  const mailtoLink = `mailto:info@worldstringitsolutions.com?subject=${encodeURIComponent(
     subject
   )}&body=${encodeURIComponent(body)}`;
 
